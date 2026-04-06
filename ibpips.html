@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IBPips – Forex Marketing & IB Services Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:    #050A14;
+  --ink2:   #080E1C;
+  --ink3:   #0C1426;
+  --gold:   #E8B94F;
+  --gold2:  #F5D080;
+  --gold3:  #C49030;
+  --teal:   #1FFFD4;
+  --blue:   #1B8FFF;
+  --white:  #EEF2FF;
+  --dim:    rgba(238,242,255,0.45);
+  --dimmer: rgba(238,242,255,0.22);
+  --glass:  rgba(255,255,255,0.03);
+  --border: rgba(232,185,79,0.18);
+  --bord2:  rgba(255,255,255,0.07);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--ink);
+  color:var(--white);
+  font-family:'Syne',sans-serif;
+  overflow-x:hidden;
+}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-thumb{background:var(--gold);}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 72px;
+  background:rgba(5,10,20,0.88);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+}
+.logo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:28px;letter-spacing:4px;
+  background:linear-gradient(90deg,var(--gold),var(--gold2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.logo sup{
+  font-family:'Syne',sans-serif;
+  font-size:9px;letter-spacing:3px;
+  color:var(--teal);-webkit-text-fill-color:var(--teal);
+  vertical-align:super;
+}
+nav ul{list-style:none;display:flex;gap:40px;align-items:center;}
+nav ul li a{
+  font-size:13px;font-weight:600;letter-spacing:2px;
+  color:var(--dim);text-decoration:none;text-transform:uppercase;
+  transition:color .3s;
+}
+nav ul li a:hover{color:var(--gold);}
+.nav-pill{
+  background:linear-gradient(135deg,var(--gold),var(--gold3));
+  color:#000;font-size:12px;font-weight:800;
+  padding:10px 28px;letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;border-radius:1px;
+  clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);
+  transition:box-shadow .3s,transform .3s;display:inline-block;
+}
+.nav-pill:hover{box-shadow:0 0 28px rgba(232,185,79,0.45);transform:translateY(-1px);}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;position:relative;
+  display:flex;align-items:center;
+  overflow:hidden;
+}
+#heroBg{
+  position:absolute;inset:0;
+  width:100%;height:100%;z-index:0;
+}
+.hero-grid{
+  position:absolute;inset:0;z-index:1;
+  background-image:
+    linear-gradient(rgba(232,185,79,0.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(232,185,79,0.07) 1px,transparent 1px);
+  background-size:80px 80px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%);
+}
+.hero-vignette{
+  position:absolute;inset:0;z-index:2;
+  background:
+    radial-gradient(ellipse 55% 70% at 70% 50%,rgba(31,255,212,0.05),transparent),
+    radial-gradient(ellipse 60% 60% at 20% 60%,rgba(232,185,79,0.07),transparent),
+    linear-gradient(180deg,var(--ink) 0%,transparent 30%,transparent 70%,var(--ink) 100%);
+}
+#candleCanvas{
+  position:absolute;right:0;top:0;bottom:0;
+  width:52%;height:100%;z-index:3;opacity:0.6;
+}
+.hero-wrap{
+  position:relative;z-index:4;
+  padding:0 72px;max-width:700px;
+  padding-top:90px;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(31,255,212,0.07);
+  border:1px solid rgba(31,255,212,0.25);
+  padding:7px 18px;margin-bottom:28px;
+  font-family:'DM Mono',monospace;font-size:11px;
+  color:var(--teal);letter-spacing:3px;text-transform:uppercase;
+}
+.pulse{width:7px;height:7px;background:var(--teal);border-radius:50%;
+  animation:pulse 1.4s ease-in-out infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(31,255,212,0.6);}
+  50%{box-shadow:0 0 0 6px rgba(31,255,212,0);}}
+
+h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(52px,7vw,100px);
+  line-height:0.95;letter-spacing:2px;
+  margin-bottom:24px;
+}
+h1 .l1{
+  display:block;
+  background:linear-gradient(90deg,#fff 60%,rgba(255,255,255,0.5));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+h1 .l2{
+  display:block;
+  background:linear-gradient(90deg,var(--gold),var(--gold2),var(--teal));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-desc{
+  font-size:17px;line-height:1.75;color:var(--dim);
+  max-width:500px;margin-bottom:44px;font-weight:400;
+}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;}
+.btn-gold{
+  background:linear-gradient(135deg,var(--gold),var(--gold3));
+  color:#000;font-family:'Syne',sans-serif;
+  font-size:13px;font-weight:800;
+  padding:16px 44px;letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;display:inline-block;
+  clip-path:polygon(14px 0,100% 0,calc(100% - 14px) 100%,0 100%);
+  transition:all .3s;
+}
+.btn-gold:hover{box-shadow:0 0 40px rgba(232,185,79,0.45);transform:translateY(-2px);}
+.btn-outline{
+  border:1px solid rgba(232,185,79,0.4);
+  color:var(--gold);font-family:'Syne',sans-serif;
+  font-size:13px;font-weight:700;
+  padding:15px 44px;letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;display:inline-block;
+  clip-path:polygon(14px 0,100% 0,calc(100% - 14px) 100%,0 100%);
+  transition:all .3s;background:rgba(232,185,79,0.04);
+}
+.btn-outline:hover{background:rgba(232,185,79,0.1);}
+
+/* FLOATING STATS BAR */
+.hero-stats{
+  position:absolute;bottom:0;left:0;right:0;z-index:4;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--border);
+  background:rgba(5,10,20,0.75);backdrop-filter:blur(16px);
+}
+.hstat{
+  padding:28px 36px;
+  border-right:1px solid var(--border);
+  position:relative;overflow:hidden;
+  transition:background .3s;
+}
+.hstat:last-child{border-right:none;}
+.hstat:hover{background:rgba(232,185,79,0.04);}
+.hstat::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold),var(--teal));
+  transform:scaleX(0);transform-origin:left;transition:transform .5s;
+}
+.hstat:hover::before{transform:scaleX(1);}
+.hstat-val{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:36px;letter-spacing:2px;
+  color:var(--gold);margin-bottom:4px;
+}
+.hstat-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--dimmer);}
+
+/* ── SECTION BASICS ── */
+section{padding:110px 72px;position:relative;}
+.sec-tag{
+  font-family:'DM Mono',monospace;
+  font-size:11px;color:var(--teal);letter-spacing:4px;
+  text-transform:uppercase;margin-bottom:14px;
+  display:flex;align-items:center;gap:14px;
+}
+.sec-tag::before{content:'';width:24px;height:1px;background:var(--teal);}
+.sec-h{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(36px,4vw,60px);letter-spacing:2px;
+  line-height:1;margin-bottom:64px;
+}
+.sec-h em{
+  font-style:normal;
+  background:linear-gradient(90deg,var(--gold),var(--teal));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+
+/* ── WHAT WE DO ── */
+#what{background:var(--ink2);}
+
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);
+}
+.svc{
+  background:var(--ink2);
+  padding:44px 36px;
+  position:relative;overflow:hidden;
+  transition:all .4s;cursor:default;
+}
+.svc::after{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold),var(--teal));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .4s;
+}
+.svc:hover::after{transform:scaleX(1);}
+.svc:hover{background:rgba(232,185,79,0.035);}
+.svc-num{
+  font-family:'DM Mono',monospace;
+  font-size:11px;color:var(--dimmer);
+  letter-spacing:3px;margin-bottom:20px;
+}
+.svc-icon{font-size:38px;margin-bottom:18px;display:block;}
+.svc h3{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:22px;letter-spacing:2px;
+  color:var(--gold);margin-bottom:14px;
+}
+.svc p{font-size:15px;line-height:1.75;color:var(--dim);}
+
+/* ── HOW IT WORKS (BROKER PROMOTION FLOW) ── */
+#how{
+  background:linear-gradient(160deg,var(--ink) 0%,var(--ink3) 100%);
+}
+.flow{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  position:relative;align-items:start;gap:0;
+}
+.flow::before{
+  content:'';position:absolute;
+  top:44px;left:10%;right:10%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),var(--teal),var(--gold),transparent);
+  z-index:0;
+}
+.flow-step{
+  text-align:center;padding:0 16px;
+  position:relative;z-index:1;
+}
+.flow-icon{
+  width:88px;height:88px;margin:0 auto 24px;
+  border:1px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-size:30px;
+  background:var(--ink);
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
+  transition:all .4s;
+}
+.flow-step:hover .flow-icon{
+  background:var(--gold);
+  box-shadow:0 0 36px rgba(232,185,79,0.5);
+}
+.flow-step h4{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:17px;letter-spacing:2px;
+  color:var(--white);margin-bottom:10px;
+}
+.flow-step p{font-size:13px;line-height:1.7;color:var(--dimmer);}
+.flow-arrow{
+  position:absolute;top:44px;right:-12px;
+  font-size:18px;color:var(--gold);opacity:0.4;
+  z-index:2;transform:translateY(-50%);
+}
+
+/* ── IB SERVICES DEEP-DIVE ── */
+#ib{background:var(--ink2);}
+
+.ib-split{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:start;
+}
+.ib-left h3{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(30px,3.5vw,50px);letter-spacing:2px;
+  line-height:1.05;margin-bottom:24px;
+}
+.ib-left p{font-size:16px;line-height:1.8;color:var(--dim);margin-bottom:32px;}
+.ib-list{list-style:none;display:flex;flex-direction:column;gap:18px;margin-bottom:44px;}
+.ib-list li{
+  display:flex;gap:16px;align-items:flex-start;
+  font-size:15px;color:var(--dim);line-height:1.6;
+}
+.ib-list li .icon{
+  width:36px;height:36px;flex-shrink:0;
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;color:var(--gold);
+  clip-path:polygon(20% 0,80% 0,100% 20%,100% 80%,80% 100%,20% 100%,0 80%,0 20%);
+}
+
+/* IB TIERS TABLE */
+.ib-tiers{
+  background:var(--glass);
+  border:1px solid var(--border);
+  overflow:hidden;
+}
+.ib-tier-head{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  background:rgba(232,185,79,0.08);
+  border-bottom:1px solid var(--border);
+  padding:0;
+}
+.th{
+  padding:18px 24px;
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:3px;color:var(--gold);
+  text-transform:uppercase;border-right:1px solid var(--border);
+}
+.th:last-child{border-right:none;}
+.ib-row{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  border-bottom:1px solid var(--bord2);
+  transition:background .3s;
+}
+.ib-row:last-child{border-bottom:none;}
+.ib-row:hover{background:rgba(232,185,79,0.04);}
+.td{
+  padding:18px 24px;
+  font-size:14px;
+  border-right:1px solid var(--bord2);
+  display:flex;align-items:center;gap:8px;
+}
+.td:last-child{border-right:none;}
+.td-label{color:var(--dim);}
+.td-val{
+  font-family:'DM Mono',monospace;
+  color:var(--white);font-size:15px;font-weight:500;
+}
+.badge{
+  font-size:9px;letter-spacing:2px;padding:3px 8px;
+  font-family:'DM Mono',monospace;
+}
+.badge-gold{background:rgba(232,185,79,0.15);color:var(--gold);border:1px solid rgba(232,185,79,0.3);}
+.badge-teal{background:rgba(31,255,212,0.1);color:var(--teal);border:1px solid rgba(31,255,212,0.2);}
+.badge-blue{background:rgba(27,143,255,0.1);color:var(--blue);border:1px solid rgba(27,143,255,0.2);}
+
+/* ── BROKER PARTNERS ── */
+#brokers{background:var(--ink);}
+.broker-intro{
+  max-width:600px;margin-bottom:60px;
+  font-size:16px;line-height:1.8;color:var(--dim);
+}
+.brokers-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--border);border:1px solid var(--border);
+  margin-bottom:60px;
+}
+.broker-card{
+  background:var(--ink);
+  padding:36px 32px;
+  position:relative;overflow:hidden;
+  transition:all .4s;cursor:default;
+}
+.broker-card:hover{background:rgba(232,185,79,0.03);}
+.broker-card::before{
+  content:'';position:absolute;left:0;top:20%;bottom:20%;width:2px;
+  background:linear-gradient(180deg,transparent,var(--gold),transparent);
+  transform:scaleY(0);transition:transform .4s;
+}
+.broker-card:hover::before{transform:scaleY(1);}
+.broker-tag{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:3px;color:var(--teal);margin-bottom:16px;
+}
+.broker-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:24px;letter-spacing:3px;color:var(--white);margin-bottom:8px;
+}
+.broker-cat{font-size:13px;color:var(--dimmer);margin-bottom:20px;}
+.broker-feats{
+  display:flex;flex-wrap:wrap;gap:8px;
+}
+.feat-chip{
+  font-size:11px;padding:4px 12px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid var(--bord2);
+  color:var(--dim);letter-spacing:1px;
+}
+
+/* ── RESULTS / PROOF ── */
+#results{background:var(--ink3);}
+.results-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:24px;
+}
+.result-card{
+  background:var(--glass);
+  border:1px solid var(--border);
+  padding:36px;position:relative;overflow:hidden;
+}
+.result-card::after{
+  content:'"';position:absolute;bottom:-20px;right:16px;
+  font-size:140px;color:rgba(232,185,79,0.05);
+  font-family:serif;line-height:1;
+}
+.result-tag{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:3px;color:var(--gold);margin-bottom:16px;
+}
+.result-text{font-size:16px;line-height:1.8;color:var(--dim);margin-bottom:28px;}
+.result-author{display:flex;align-items:center;gap:14px;}
+.result-av{
+  width:46px;height:46px;border-radius:50%;
+  border:2px solid var(--gold);
+  background:linear-gradient(135deg,var(--gold3),var(--ink3));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--gold);
+}
+.result-name{font-weight:700;font-size:15px;margin-bottom:2px;}
+.result-role{font-size:12px;color:var(--dimmer);}
+
+/* ── WHY PARTNER ── */
+#why{background:var(--ink2);}
+.why-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--border);border:1px solid var(--border);
+}
+.why-card{
+  background:var(--ink2);
+  padding:40px 28px;text-align:center;
+  transition:all .4s;cursor:default;
+}
+.why-card:hover{background:rgba(232,185,79,0.04);}
+.why-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:52px;letter-spacing:1px;
+  background:linear-gradient(135deg,var(--gold),var(--teal));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  margin-bottom:10px;
+}
+.why-card h4{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:17px;letter-spacing:2px;
+  color:var(--white);margin-bottom:12px;
+}
+.why-card p{font-size:14px;line-height:1.7;color:var(--dimmer);}
+
+/* ── CTA ── */
+#cta{
+  background:var(--ink);
+  text-align:center;padding:130px 72px;
+  position:relative;overflow:hidden;
+}
+#cta::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(232,185,79,0.06),transparent);
+  pointer-events:none;
+}
+/* big decorative text */
+#cta::after{
+  content:'GROW';position:absolute;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:'Bebas Neue',sans-serif;
+  font-size:320px;letter-spacing:20px;
+  color:rgba(232,185,79,0.03);
+  white-space:nowrap;pointer-events:none;z-index:0;
+}
+#cta > *{position:relative;z-index:1;}
+#cta h2{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(40px,6vw,80px);letter-spacing:3px;
+  line-height:1;margin-bottom:20px;
+}
+#cta p{
+  font-size:18px;color:var(--dim);
+  max-width:520px;margin:0 auto 50px;line-height:1.7;
+}
+.cta-btns{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--ink);
+  border-top:1px solid var(--border);
+  padding:70px 72px 36px;
+}
+.footer-grid{
+  display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr;
+  gap:64px;margin-bottom:56px;
+}
+.f-brand .logo{margin-bottom:18px;display:block;}
+.f-brand p{font-size:14px;line-height:1.85;color:var(--dimmer);max-width:300px;}
+.f-col h5{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:22px;
+}
+.f-col ul{list-style:none;display:flex;flex-direction:column;gap:12px;}
+.f-col ul a{
+  font-size:14px;color:var(--dimmer);
+  text-decoration:none;transition:color .3s;
+}
+.f-col ul a:hover{color:var(--gold);}
+.footer-bottom{
+  border-top:1px solid var(--bord2);
+  padding-top:28px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+}
+.footer-bottom p{font-size:12px;color:rgba(238,242,255,0.2);}
+.disclaimer{
+  margin-top:24px;
+  background:rgba(27,143,255,0.05);
+  border:1px solid rgba(27,143,255,0.15);
+  padding:14px 22px;
+  font-size:11px;line-height:1.7;color:rgba(238,242,255,0.3);
+}
+
+/* PARTICLES */
+.particles-wrap{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1;}
+.pt{
+  position:absolute;border-radius:50%;background:var(--gold);
+  animation:floatUp linear infinite;opacity:0;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0) scale(1);opacity:0;}
+  10%{opacity:0.15;}90%{opacity:0.1;}
+  100%{transform:translateY(-120vh) scale(0.5);opacity:0;}
+}
+
+@media(max-width:1100px){
+  nav{padding:16px 28px;}
+  nav ul{display:none;}
+  section{padding:80px 28px;}
+  .hero-wrap{padding:0 28px;padding-top:90px;}
+  .services-grid{grid-template-columns:1fr 1fr;}
+  .flow{grid-template-columns:1fr 1fr;row-gap:60px;}
+  .flow::before{display:none;}
+  .ib-split{grid-template-columns:1fr;}
+  .brokers-grid{grid-template-columns:1fr 1fr;}
+  .results-grid{grid-template-columns:1fr;}
+  .why-grid{grid-template-columns:1fr 1fr;}
+  .hero-stats{grid-template-columns:1fr 1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">IBPips<sup>™</sup></div>
+  <ul>
+    <li><a href="#what">Services</a></li>
+    <li><a href="#ib">IB Program</a></li>
+    <li><a href="#brokers">Brokers</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#cta" class="nav-pill">Partner With Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="heroBg" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;"></canvas>
+  <div class="hero-grid"></div>
+  <div class="hero-vignette"></div>
+  <canvas id="candleCanvas"></canvas>
+
+  <div class="particles-wrap" id="pts"></div>
+
+  <div class="hero-wrap">
+    <div class="eyebrow">
+      <div class="pulse"></div>
+      Forex Marketing & IB Services
+    </div>
+    <h1>
+      <span class="l1">We Grow</span>
+      <span class="l2">Forex Brands.</span>
+    </h1>
+    <p class="hero-desc">IBPips is the premier performance marketing agency for forex brokers and financial brands. We connect brokers with qualified traders, manage IB networks, and drive measurable client acquisition.</p>
+    <div class="hero-ctas">
+      <a href="#cta" class="btn-gold">Promote Your Broker</a>
+      <a href="#ib" class="btn-outline">Become an IB Partner</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hstat">
+      <div class="hstat-val" data-count="340">0</div>
+      <div class="hstat-label">Broker Campaigns Run</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-val" data-count="85000">0</div>
+      <div class="hstat-label">Traders Referred</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-val" data-count="42">0</div>
+      <div class="hstat-label">Markets We Cover</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-val" data-count="12">0</div>
+      <div class="hstat-label">Years in the Industry</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section id="what">
+  <div class="sec-tag">Our Services</div>
+  <div class="sec-h">What We <em>Deliver</em></div>
+
+  <div class="services-grid">
+    <div class="svc">
+      <div class="svc-num">01</div>
+      <span class="svc-icon">📢</span>
+      <h3>Broker Promotion</h3>
+      <p>We craft and run high-converting campaigns that position your forex or CFD brokerage in front of the right audience — active traders, switchers, and high-value depositors across 40+ markets.</p>
+    </div>
+    <div class="svc">
+      <div class="svc-num">02</div>
+      <span class="svc-icon">🤝</span>
+      <h3>IB Network Management</h3>
+      <p>We build, recruit, and manage multi-tier Introducing Broker networks on your behalf. From onboarding to commission tracking, we handle every layer of your IB ecosystem.</p>
+    </div>
+    <div class="svc">
+      <div class="svc-num">03</div>
+      <span class="svc-icon">🎯</span>
+      <h3>Lead Generation</h3>
+      <p>Precision-targeted paid campaigns across Google, Meta, TikTok, and native networks. Our forex-specialized team delivers FTDs (First Time Depositors) — not just clicks.</p>
+    </div>
+    <div class="svc">
+      <div class="svc-num">04</div>
+      <span class="svc-icon">🌍</span>
+      <h3>Regional Market Entry</h3>
+      <p>Launching in MENA, Africa, or Southeast Asia? We provide on-the-ground marketing expertise, local language campaigns, and compliant promotional strategies for every region.</p>
+    </div>
+    <div class="svc">
+      <div class="svc-num">05</div>
+      <span class="svc-icon">📱</span>
+      <h3>Content & Social Strategy</h3>
+      <p>We create financial content, educational material, and social media strategies that build trust and brand authority for your brokerage — without direct trading solicitation.</p>
+    </div>
+    <div class="svc">
+      <div class="svc-num">06</div>
+      <span class="svc-icon">📊</span>
+      <h3>Analytics & Reporting</h3>
+      <p>Full campaign transparency with real-time dashboards. Track CPA, FTD rates, sub-IB volume, and ROI across every channel we manage for your brand.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="sec-tag">Our Process</div>
+  <div class="sec-h">How We <em>Promote Your Broker</em></div>
+
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-icon">🔍</div>
+      <h4>Discovery</h4>
+      <p>We audit your broker's positioning, USPs, target markets, and competitive landscape.</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-icon">🗺</div>
+      <h4>Strategy</h4>
+      <p>We design a custom marketing and IB growth plan tailored to your broker's goals and regions.</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-icon">🚀</div>
+      <h4>Launch</h4>
+      <p>Campaigns, landing pages, IB onboarding portals, and content go live simultaneously.</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-icon">📈</div>
+      <h4>Optimize</h4>
+      <p>Continuous A/B testing, IB coaching, and budget reallocation based on live performance data.</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-icon">💰</div>
+      <h4>Scale</h4>
+      <p>Proven campaigns are scaled across new regions, languages, and sub-IB tiers for compounding growth.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IB SERVICES -->
+<section id="ib">
+  <div class="sec-tag">IB Services</div>
+  <div class="sec-h">Our <em>IB Partner Program</em></div>
+
+  <div class="ib-split">
+    <div class="ib-left">
+      <h3>Refer Brokers.<br>Earn <span style="background:linear-gradient(90deg,var(--gold),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Recurring Revenue.</span></h3>
+      <p>Our IB program lets you earn commission by referring clients to our partner brokers. You don't trade — you promote. Build a network, earn on every lot traded by your referrals, and scale with our sub-IB system.</p>
+      <ul class="ib-list">
+        <li>
+          <div class="icon">💳</div>
+          <span>Earn per lot traded by every client you refer to partner brokers — weekly or monthly payouts.</span>
+        </li>
+        <li>
+          <div class="icon">🌐</div>
+          <span>3-level sub-IB structure — earn a percentage of what your sub-IBs generate too.</span>
+        </li>
+        <li>
+          <div class="icon">📋</div>
+          <span>Real-time IB dashboard: track referrals, volumes, commissions, and sub-IB performance.</span>
+        </li>
+        <li>
+          <div class="icon">🎯</div>
+          <span>We provide you marketing materials, landing pages, and promotional creatives for free.</span>
+        </li>
+        <li>
+          <div class="icon">🛎</div>
+          <span>Dedicated IB relationship manager to help you grow your network and maximize earnings.</span>
+        </li>
+      </ul>
+      <a href="#cta" class="btn-gold">Apply as IB Partner</a>
+    </div>
+
+    <div class="ib-right">
+      <div class="sec-tag" style="margin-bottom:24px;">Commission Structure</div>
+      <div class="ib-tiers">
+        <div class="ib-tier-head">
+          <div class="th">IB Tier</div>
+          <div class="th">Commission / Lot</div>
+          <div class="th">Extras</div>
+        </div>
+        <div class="ib-row">
+          <div class="td td-label">Starter IB</div>
+          <div class="td"><span class="td-val">$8 – $12</span></div>
+          <div class="td"><span class="badge badge-gold">1-Level</span></div>
+        </div>
+        <div class="ib-row">
+          <div class="td td-label">Silver IB</div>
+          <div class="td"><span class="td-val">$12 – $18</span></div>
+          <div class="td"><span class="badge badge-teal">2-Level Sub-IB</span></div>
+        </div>
+        <div class="ib-row">
+          <div class="td td-label">Gold IB</div>
+          <div class="td"><span class="td-val">$18 – $25</span></div>
+          <div class="td"><span class="badge badge-blue">3-Level + Bonus</span></div>
+        </div>
+        <div class="ib-row">
+          <div class="td td-label">Elite IB</div>
+          <div class="td"><span class="td-val">Custom</span></div>
+          <div class="td"><span class="badge badge-gold">Negotiated</span></div>
+        </div>
+        <div class="ib-row">
+          <div class="td td-label">Payout Frequency</div>
+          <div class="td"><span class="td-val">Weekly / Monthly</span></div>
+          <div class="td"><span class="badge badge-teal">Instant Available</span></div>
+        </div>
+        <div class="ib-row">
+          <div class="td td-label">Min. Withdrawal</div>
+          <div class="td"><span class="td-val">$50</span></div>
+          <div class="td"><span class="badge badge-blue">Bank / Crypto</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BROKER PARTNERS -->
+<section id="brokers">
+  <div class="sec-tag">Our Partners</div>
+  <div class="sec-h">Brokers We <em>Promote</em></div>
+  <p class="broker-intro">We work with a hand-picked selection of regulated, reputable forex and CFD brokers across multiple jurisdictions. We promote their services — we are not brokers ourselves.</p>
+
+  <div class="brokers-grid">
+    <div class="broker-card">
+      <div class="broker-tag">REGULATED · FCA / ASIC</div>
+      <div class="broker-name">NEXUS FX</div>
+      <div class="broker-cat">Global Multi-Asset Broker</div>
+      <div class="broker-feats">
+        <span class="feat-chip">0.0 Pip Spreads</span>
+        <span class="feat-chip">MT4 / MT5</span>
+        <span class="feat-chip">High CPA</span>
+      </div>
+    </div>
+    <div class="broker-card">
+      <div class="broker-tag">REGULATED · CySEC / FSA</div>
+      <div class="broker-name">VANTAGE PRO</div>
+      <div class="broker-cat">ECN / STP Broker</div>
+      <div class="broker-feats">
+        <span class="feat-chip">Raw Spreads</span>
+        <span class="feat-chip">High Leverage</span>
+        <span class="feat-chip">MENA Focus</span>
+      </div>
+    </div>
+    <div class="broker-card">
+      <div class="broker-tag">REGULATED · IFSC / FSC</div>
+      <div class="broker-name">APEX MARKETS</div>
+      <div class="broker-cat">Offshore Premium Broker</div>
+      <div class="broker-feats">
+        <span class="feat-chip">1:1000 Leverage</span>
+        <span class="feat-chip">Crypto Deposits</span>
+        <span class="feat-chip">Africa Focus</span>
+      </div>
+    </div>
+    <div class="broker-card">
+      <div class="broker-tag">REGULATED · DFSA</div>
+      <div class="broker-name">DUNE CAPITAL</div>
+      <div class="broker-cat">UAE & Gulf Region Specialist</div>
+      <div class="broker-feats">
+        <span class="feat-chip">AED Accounts</span>
+        <span class="feat-chip">Islamic Accounts</span>
+        <span class="feat-chip">Arabic Support</span>
+      </div>
+    </div>
+    <div class="broker-card">
+      <div class="broker-tag">REGULATED · SCB</div>
+      <div class="broker-name">MERIDIAN FX</div>
+      <div class="broker-cat">South East Asia Broker</div>
+      <div class="broker-feats">
+        <span class="feat-chip">Local Payment</span>
+        <span class="feat-chip">Copy Trading</span>
+        <span class="feat-chip">$50 Min Deposit</span>
+      </div>
+    </div>
+    <div class="broker-card">
+      <div class="broker-tag">REGULATED · CMA</div>
+      <div class="broker-name">SUMMIT TRADE</div>
+      <div class="broker-cat">Africa & East Africa Broker</div>
+      <div class="broker-feats">
+        <span class="feat-chip">M-Pesa Deposits</span>
+        <span class="feat-chip">Mobile First</span>
+        <span class="feat-chip">Low Spreads</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;">
+    <a href="#cta" class="btn-outline">Enquire About Partnership</a>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section id="results">
+  <div class="sec-tag">Client Testimonials</div>
+  <div class="sec-h">What Our <em>Partners Say</em></div>
+
+  <div class="results-grid">
+    <div class="result-card">
+      <div class="result-tag">BROKER PARTNER · NEXUS FX</div>
+      <p class="result-text">IBPips delivered 1,800 funded accounts in our first quarter together. Their MENA IB network is exceptionally strong — something we could never have built internally at this speed.</p>
+      <div class="result-author">
+        <div class="result-av">RK</div>
+        <div>
+          <div class="result-name">Ravi Krishnamurthy</div>
+          <div class="result-role">CMO, Nexus FX · Dubai</div>
+        </div>
+      </div>
+    </div>
+    <div class="result-card">
+      <div class="result-tag">IB PARTNER · GOLD TIER</div>
+      <p class="result-text">I joined as a Silver IB and scaled to Gold within 3 months. The commission structure is transparent, payouts are always on time, and the support team actually picks up the phone.</p>
+      <div class="result-author">
+        <div class="result-av">AM</div>
+        <div>
+          <div class="result-name">Amira Mansour</div>
+          <div class="result-role">Gold IB Partner · Cairo, Egypt</div>
+        </div>
+      </div>
+    </div>
+    <div class="result-card">
+      <div class="result-tag">BROKER PARTNER · APEX MARKETS</div>
+      <p class="result-text">Our Africa acquisition costs dropped by 60% after partnering with IBPips. They know the local payment landscape and have ground-level IB relationships we simply didn't have access to.</p>
+      <div class="result-author">
+        <div class="result-av">TJ</div>
+        <div>
+          <div class="result-name">Tunde Jakande</div>
+          <div class="result-role">CEO, Apex Markets · Lagos</div>
+        </div>
+      </div>
+    </div>
+    <div class="result-card">
+      <div class="result-tag">IB PARTNER · ELITE TIER</div>
+      <p class="result-text">Running a sub-IB network was never this manageable. The dashboard is clean, the tracking is accurate to the pip, and the 3-tier structure means my network earns me while I sleep.</p>
+      <div class="result-author">
+        <div class="result-av">KP</div>
+        <div>
+          <div class="result-name">Khaled Al-Pharsi</div>
+          <div class="result-role">Elite IB · Muscat, Oman</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY PARTNER -->
+<section id="why">
+  <div class="sec-tag">Why IBPips</div>
+  <div class="sec-h">The Numbers <em>Speak</em></div>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-num" data-count="12">0</div>
+      <h4>Years of Expertise</h4>
+      <p>Over a decade specializing exclusively in forex and CFD broker marketing — no generalists here.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num" data-count="85">0</div>
+      <h4>IBs in Our Network</h4>
+      <p>A verified network of 85K+ active introducing brokers spanning 42 countries and 6 continents.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num" data-count="40">0</div>
+      <h4>Countries Covered</h4>
+      <p>Localized campaigns with native speakers, regional payment integrations, and compliant creatives.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num" data-count="98">0</div>
+      <h4>Client Retention Rate</h4>
+      <p>98% of our broker partners renew their campaign contracts annually — results retain relationships.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <h2>Ready to <span style="background:linear-gradient(90deg,var(--gold),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Scale Your Broker?</span></h2>
+  <p>Whether you're a forex broker seeking new clients or a marketer ready to earn as an IB — let's build something powerful together.</p>
+  <div class="cta-btns">
+    <a href="#" class="btn-gold">Promote My Broker</a>
+    <a href="#" class="btn-outline">Join as IB Partner</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="f-brand">
+      <div class="logo">IBPips<sup style="font-family:Syne;font-size:9px;letter-spacing:2px;-webkit-text-fill-color:var(--teal);">™</sup></div>
+      <p>IBPips is a forex marketing and IB services agency. We promote regulated forex brokers and manage introducing broker networks. We are not a broker, financial advisor, or trading platform.</p>
+    </div>
+    <div class="f-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#">Broker Promotion</a></li>
+        <li><a href="#">IB Management</a></li>
+        <li><a href="#">Lead Generation</a></li>
+        <li><a href="#">Market Entry</a></li>
+        <li><a href="#">Analytics</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h5>IB Program</h5>
+      <ul>
+        <li><a href="#">Join as IB</a></li>
+        <li><a href="#">Commission Tiers</a></li>
+        <li><a href="#">IB Dashboard</a></li>
+        <li><a href="#">Sub-IB Network</a></li>
+        <li><a href="#">Payout Info</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Partner Brokers</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    ⚠ Disclaimer: IBPips is a marketing and affiliate services company. We do not offer financial advice, accept client funds, or operate as a broker or financial institution. The brokers we promote are independent entities. Trading foreign exchange and CFDs carries significant risk of loss. All promotional content is created on behalf of our partner brokers and subject to applicable regulations.
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 IBPips Marketing Ltd. All rights reserved.</p>
+    <p style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(238,242,255,0.15);">IBPIPS-MKT-2025</p>
+  </div>
+</footer>
+
+<script>
+// ── PARTICLES ──
+(function(){
+  const wrap=document.getElementById('pts');
+  for(let i=0;i<22;i++){
+    const p=document.createElement('div');
+    p.className='pt';
+    const s=Math.random()*3+1.5;
+    p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;
+      animation-duration:${Math.random()*18+10}s;
+      animation-delay:${Math.random()*18}s;`;
+    wrap.appendChild(p);
+  }
+})();
+
+// ── AURORA BG ──
+(function(){
+  const cv=document.getElementById('heroBg');
+  const ctx=cv.getContext('2d');
+  let t=0;
+  function resize(){cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;}
+  resize();window.addEventListener('resize',resize);
+  function draw(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    [[0.25,0.5,'rgba(232,185,79,0.12)'],[0.75,0.4,'rgba(31,255,212,0.07)'],[0.5,0.7,'rgba(27,143,255,0.07)']].forEach(([bx,by,col],i)=>{
+      const gx=cv.width*(bx+Math.sin(t*0.35+i*1.1)*0.12);
+      const gy=cv.height*(by+Math.cos(t*0.28+i*0.9)*0.15);
+      const g=ctx.createRadialGradient(gx,gy,0,gx,gy,cv.width*0.38);
+      g.addColorStop(0,col);g.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.fillStyle=g;ctx.fillRect(0,0,cv.width,cv.height);
+    });
+    t+=0.008;requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ── CANDLESTICK ──
+(function(){
+  const cv=document.getElementById('candleCanvas');
+  const ctx=cv.getContext('2d');
+  function resize(){
+    cv.width=(cv.offsetWidth||1)*devicePixelRatio;
+    cv.height=(cv.offsetHeight||1)*devicePixelRatio;
+    ctx.scale(devicePixelRatio,devicePixelRatio);
+  }
+  resize();window.addEventListener('resize',resize);
+
+  const candles=[];let price=1.1050;
+  for(let i=0;i<70;i++){
+    const o=price;const ch=(Math.random()-0.47)*0.0028;const c=o+ch;
+    const h=Math.max(o,c)+Math.random()*0.0012;
+    const l=Math.min(o,c)-Math.random()*0.0012;
+    candles.push({o,c,h,l});price=c;
+  }
+
+  let frame=0;
+  function draw(){
+    const W=cv.offsetWidth,H=cv.offsetHeight;
+    ctx.clearRect(0,0,W,H);
+    const vis=candles.slice(-55);
+    const prices=vis.flatMap(c=>[c.h,c.l]);
+    const mn=Math.min(...prices),mx=Math.max(...prices);
+    const rng=mx-mn||0.001;const pad=40;
+    const toY=p=>pad+(H-2*pad)*(mx-p)/rng;
+    const cw=(W-60)/vis.length,bw=cw*0.55;
+    const reveal=Math.min(vis.length,Math.floor(frame/1.5)+1);
+
+    // grid
+    ctx.strokeStyle='rgba(232,185,79,0.07)';ctx.lineWidth=1;ctx.setLineDash([2,8]);
+    for(let i=0;i<=4;i++){const y=pad+((H-2*pad)/4)*i;ctx.beginPath();ctx.moveTo(20,y);ctx.lineTo(W-20,y);ctx.stroke();}
+    ctx.setLineDash([]);
+
+    vis.slice(0,reveal).forEach((c,i)=>{
+      const bull=c.c>=c.o;
+      const col=bull?'#00E676':'#FF3D57';
+      const x=30+i*cw+cw/2;
+      ctx.shadowColor=bull?'rgba(0,230,118,0.25)':'rgba(255,61,87,0.25)';
+      ctx.shadowBlur=6;
+      ctx.strokeStyle=col;ctx.lineWidth=1.5;
+      ctx.beginPath();ctx.moveTo(x,toY(c.h));ctx.lineTo(x,toY(c.l));ctx.stroke();
+      ctx.fillStyle=col;
+      const y1=toY(Math.max(c.o,c.c));const bh=Math.max(toY(Math.min(c.o,c.c))-y1,2);
+      ctx.fillRect(x-bw/2,y1,bw,bh);
+      ctx.shadowBlur=0;
+    });
+
+    // MA line
+    if(reveal>20){
+      ctx.strokeStyle='rgba(31,255,212,0.45)';ctx.lineWidth=1.5;ctx.setLineDash([5,5]);
+      ctx.beginPath();
+      for(let i=20;i<reveal;i++){
+        const avg=vis.slice(i-20,i).reduce((a,b)=>a+b.c,0)/20;
+        const x=30+i*cw+cw/2;
+        i===20?ctx.moveTo(x,toY(avg)):ctx.lineTo(x,toY(avg));
+      }ctx.stroke();ctx.setLineDash([]);
+    }
+
+    if(frame%80===0){
+      const last=candles[candles.length-1];
+      const o=last.c;const ch=(Math.random()-0.47)*0.003;const c=o+ch;
+      candles.push({o,c,h:Math.max(o,c)+Math.random()*0.001,l:Math.min(o,c)-Math.random()*0.001});
+      if(candles.length>200)candles.shift();
+    }
+    frame++;requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ── COUNT UP ──
+(function(){
+  const els=document.querySelectorAll('[data-count]');
+  const fmt=n=>n>=1000?n.toLocaleString():n;
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      const el=e.target;
+      const target=parseInt(el.dataset.count);
+      const suffix=el.closest('.hstat-val')?'+':
+                   el.textContent.includes('%')?'%':'';
+      let cur=0;const inc=target/60;
+      const t=setInterval(()=>{
+        cur+=inc;if(cur>=target){cur=target;clearInterval(t);}
+        el.textContent=fmt(Math.floor(cur))+(suffix);
+      },22);
+      obs.unobserve(el);
+    });
+  },{threshold:0.5});
+  els.forEach(el=>obs.observe(el));
+  // add + suffix to hstat vals
+  document.querySelectorAll('.hstat-val').forEach(el=>el.dataset.suffix='+');
+})();
+</script>
+</body>
+</html>
