@@ -253,6 +253,9 @@ a{text-decoration:none;color:inherit;}
 /* XTB blue accent */
 .bcn.xtb::before{background:linear-gradient(90deg,#0056b3,#0099ff);}
 .bcn.xtb:hover{border-color:rgba(0,86,179,.3);}
+/* FP Markets red accent */
+.bcn.fpmarkets::before{background:linear-gradient(90deg,#c0392b,#e74c3c);}
+.bcn.fpmarkets:hover{border-color:rgba(192,57,43,.3);}
 /* AdroFx purple accent */
 .bcn.adrofx::before{background:linear-gradient(90deg,#7c3aed,#a855f7);}
 .bcn.adrofx:hover{border-color:rgba(124,58,237,.3);}
@@ -263,13 +266,12 @@ a{text-decoration:none;color:inherit;}
 .bcn-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;}
 .bcn-logo-wrap{display:flex;align-items:center;gap:12px;}
 .bcn-logo-icon{
-  width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;
-  font-weight:900;font-size:15px;letter-spacing:-.5px;flex-shrink:0;
+  width:auto;min-width:80px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;overflow:hidden;background:#fff;padding:6px 14px;
 }
-.etoro .bcn-logo-icon{background:linear-gradient(135deg,#00c853,#1de9b6);color:#fff;}
-.xtb .bcn-logo-icon{background:linear-gradient(135deg,#0056b3,#0099ff);color:#fff;}
-.adrofx .bcn-logo-icon{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;}
-.admiral .bcn-logo-icon{background:linear-gradient(135deg,#0073a8,#00b4d8);color:#fff;}
+.bcn-logo-icon img{width:100%;height:100%;object-fit:contain;}
+.bcn-logo-text{font-weight:900;letter-spacing:-0.5px;font-size:16px;line-height:1;white-space:nowrap;}
+.adrofx .bcn-logo-icon{background:#1a0a35;}
 
 .bcn-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:#fff;line-height:1;}
 .bcn-tagline{font-size:11px;color:var(--text2);margin-top:2px;}
@@ -289,6 +291,8 @@ a{text-decoration:none;color:inherit;}
 .etoro .bcn-signup:hover{box-shadow:0 6px 22px rgba(0,200,83,.4);transform:translateY(-1px);}
 .xtb .bcn-signup{background:linear-gradient(135deg,#0056b3,#0099ff);color:#fff;}
 .xtb .bcn-signup:hover{box-shadow:0 6px 22px rgba(0,86,179,.4);transform:translateY(-1px);}
+.fpmarkets .bcn-signup{background:linear-gradient(135deg,#c0392b,#e74c3c);color:#fff;}
+.fpmarkets .bcn-signup:hover{box-shadow:0 6px 22px rgba(192,57,43,.4);transform:translateY(-1px);}
 .adrofx .bcn-signup{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;}
 .adrofx .bcn-signup:hover{box-shadow:0 6px 22px rgba(124,58,237,.4);transform:translateY(-1px);}
 .admiral .bcn-signup{background:linear-gradient(135deg,#0073a8,#00b4d8);color:#fff;}
@@ -479,6 +483,9 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
 </head>
 <body>
 
+<p style="display:none;">
+Impact-Site-Verification: 733f61d6-caca-4bf2-8c6c-1e63234289ef
+</p>
 <!-- NAV -->
 <nav id="nav">
   <div class="logo">IB<span class="pip">Pips</span><sup>™</sup><small>AWS Marketing</small></div>
@@ -680,7 +687,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
     <div class="bcn etoro">
       <div class="bcn-header">
         <div class="bcn-logo-wrap">
-          <div class="bcn-logo-icon">e</div>
+          <div class="bcn-logo-icon"><span class="bcn-logo-text" style="color:#00c853;font-size:18px;font-family:'Plus Jakarta Sans',sans-serif;">e<span style="color:#000;">Toro</span></span></div>
           <div>
             <div class="bcn-name">eTORO</div>
             <div class="bcn-tagline">Social Trading Platform</div>
@@ -688,7 +695,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
         </div>
         <div style="display:flex;align-items:center;gap:8px;">
           <div class="bcn-status"></div>
-          <span class="bcn-badge">ACTIVE IB</span>
+          <span class="bcn-badge">OUR TRUSTED BROKER</span>
         </div>
       </div>
       <div class="bcn-reg">Regulated · FCA · ASIC · CySEC · FinCEN</div>
@@ -709,7 +716,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
     <div class="bcn xtb">
       <div class="bcn-header">
         <div class="bcn-logo-wrap">
-          <div class="bcn-logo-icon">XTB</div>
+          <div class="bcn-logo-icon"><span class="bcn-logo-text" style="color:#d32f2f;font-size:20px;font-family:'Bebas Neue',sans-serif;letter-spacing:3px;">XTB</span></div>
           <div>
             <div class="bcn-name">XTB</div>
             <div class="bcn-tagline">Award-Winning CFD Broker</div>
@@ -717,7 +724,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
         </div>
         <div style="display:flex;align-items:center;gap:8px;">
           <div class="bcn-status"></div>
-          <span class="bcn-badge">ACTIVE IB</span>
+          <span class="bcn-badge">OUR TRUSTED BROKER</span>
         </div>
       </div>
       <div class="bcn-reg">Regulated · FCA · KNF · CySEC · IFSC</div>
@@ -729,8 +736,37 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
         <span class="bcn-chip">0% Commission Stocks</span>
         <span class="bcn-chip">Listed Company</span>
       </div>
-      <a href="https://www.xtb.com/" target="_blank" class="bcn-signup">
+      <a href="https://geolink.xtb.com/VdiZi" target="_blank" class="bcn-signup">
         Open XTB Account →
+      </a>
+    </div>
+
+    <!-- FP Markets -->
+    <div class="bcn fpmarkets">
+      <div class="bcn-header">
+        <div class="bcn-logo-wrap">
+          <div class="bcn-logo-icon"><span class="bcn-logo-text" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;"><span style="color:#0099cc;font-weight:900;">FP</span><span style="color:#333;font-weight:700;"> Markets</span></span></div>
+          <div>
+            <div class="bcn-name">FP MARKETS</div>
+            <div class="bcn-tagline">ECN Forex & CFD Broker</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div class="bcn-status"></div>
+          <span class="bcn-badge">OUR TRUSTED BROKER</span>
+        </div>
+      </div>
+      <div class="bcn-reg">Regulated · ASIC · CySEC · FSA</div>
+      <p class="bcn-desc">FP Markets is an award-winning Australian ECN broker offering ultra-tight spreads from 0.0 pips with fast execution. With MT4/MT5 and cTrader support, a broad range of 10,000+ instruments, and a competitive IB program, FP Markets is a top pick for active traders across MENA and Asia.</p>
+      <div class="bcn-chips">
+        <span class="bcn-chip">10,000+ Instruments</span>
+        <span class="bcn-chip">ECN Spreads from 0.0</span>
+        <span class="bcn-chip">MT4 / MT5 / cTrader</span>
+        <span class="bcn-chip">ASIC Regulated</span>
+        <span class="bcn-chip">Islamic Accounts</span>
+      </div>
+      <a href="https://www.fpmarkets.com/?fpm-affiliate-utm-source=IB&fpm-affiliate-agt=66398" target="_blank" class="bcn-signup">
+        Open FP Markets Account →
       </a>
     </div>
 
@@ -738,7 +774,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
     <div class="bcn adrofx">
       <div class="bcn-header">
         <div class="bcn-logo-wrap">
-          <div class="bcn-logo-icon" style="font-size:11px;">AFX</div>
+          <div class="bcn-logo-icon"><span class="bcn-logo-text" style="color:#a78bfa;font-size:15px;font-family:'Plus Jakarta Sans',sans-serif;">Adro<span style="color:#fff;">Fx</span></span></div>
           <div>
             <div class="bcn-name">ADROFX</div>
             <div class="bcn-tagline">Forex & CFD Specialist</div>
@@ -746,7 +782,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
         </div>
         <div style="display:flex;align-items:center;gap:8px;">
           <div class="bcn-status"></div>
-          <span class="bcn-badge">ACTIVE IB</span>
+          <span class="bcn-badge">OUR TRUSTED BROKER</span>
         </div>
       </div>
       <div class="bcn-reg">Regulated · SVGFSA · Global Reach</div>
@@ -758,7 +794,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
         <span class="bcn-chip">Crypto Deposits</span>
         <span class="bcn-chip">Islamic Accounts</span>
       </div>
-      <a href="https://adrofx.com/" target="_blank" class="bcn-signup">
+      <a href="https://adrofx.club/?refid=AWVYN5" target="_blank" class="bcn-signup">
         Open AdroFx Account →
       </a>
     </div>
@@ -767,7 +803,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
     <div class="bcn admiral">
       <div class="bcn-header">
         <div class="bcn-logo-wrap">
-          <div class="bcn-logo-icon" style="font-size:11px;">ADM</div>
+          <div class="bcn-logo-icon"><span class="bcn-logo-text" style="color:#0073a8;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;">ADMIRALS</span></div>
           <div>
             <div class="bcn-name">ADMIRAL MARKETS</div>
             <div class="bcn-tagline">Admirals · Global Broker</div>
@@ -775,7 +811,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
         </div>
         <div style="display:flex;align-items:center;gap:8px;">
           <div class="bcn-status"></div>
-          <span class="bcn-badge">ACTIVE IB</span>
+          <span class="bcn-badge">OUR TRUSTED BROKER</span>
         </div>
       </div>
       <div class="bcn-reg">Regulated · FCA · ASIC · CySEC · EFSA · JSC</div>
@@ -996,6 +1032,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
       <ul>
         <li><a href="#brokers">eToro</a></li>
         <li><a href="#brokers">XTB</a></li>
+        <li><a href="#brokers">FP Markets</a></li>
         <li><a href="#brokers">AdroFx</a></li>
         <li><a href="#brokers">Admiral Markets</a></li>
       </ul>
