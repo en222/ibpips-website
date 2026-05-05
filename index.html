@@ -1,1610 +1,393 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="IBPips – A premier Introducing Broker partnered with the world's top forex brokers. We bring volume, traders, and IB networks to your brokerage.">
-<title>IBPips™ | Your Introducing Broker Partner | AWS Marketing</title>
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMPHZH8WTV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-SMPHZH8WTV');
-</script>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root{
-  --gold:   #D4A017;
-  --gold2:  #F0C040;
-  --gold3:  #FDE68A;
-  --dark:   #060B14;
-  --dark2:  #0B1220;
-  --dark3:  #0F1A2E;
-  --text:   #F1F5F9;
-  --text2:  #94A3B8;
-  --text3:  #64748B;
-  --teal:   #0EA5E9;
-  --green:  #22C55E;
-  --red:    #EF4444;
-  --border: rgba(212,160,23,0.15);
-  --bord2:  rgba(255,255,255,0.07);
-  --glass:  rgba(255,255,255,0.03);
-  --shadow: 0 8px 40px rgba(0,0,0,0.4);
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent;}
-body{background:var(--dark);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;overflow-x:hidden;line-height:1.6;}
-a{text-decoration:none;color:inherit;}
-::-webkit-scrollbar{width:3px;}
-::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px;}
-
-/* ══ NAV ══ */
-#nav{
-  position:fixed;top:0;left:0;right:0;z-index:1000;
-  height:66px;display:flex;align-items:center;justify-content:space-between;
-  padding:0 5%;
-  background:rgba(6,11,20,0.92);
-  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
-  border-bottom:1px solid var(--border);
-  transition:background .3s;
-}
-.logo{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:25px;letter-spacing:3px;
-  display:flex;align-items:baseline;gap:2px;
-}
-.logo .pip{color:var(--gold);}
-.logo sup{font-family:'Plus Jakarta Sans',sans-serif;font-size:7px;color:var(--text3);letter-spacing:1px;margin-left:1px;}
-.logo small{font-family:'Plus Jakarta Sans',sans-serif;font-size:9px;color:var(--text3);letter-spacing:2px;margin-left:8px;font-weight:600;}
-
-.nav-links{display:flex;align-items:center;gap:28px;list-style:none;}
-.nav-links a{font-size:13px;font-weight:600;color:var(--text2);letter-spacing:.3px;transition:color .2s;}
-.nav-links a:hover{color:var(--gold);}
-.nav-cta{
-  background:linear-gradient(135deg,var(--gold),var(--gold2));
-  color:#000 !important;font-size:12px;font-weight:800;
-  padding:10px 24px;border-radius:5px;letter-spacing:.3px;
-  transition:all .3s;white-space:nowrap;
-}
-.nav-cta:hover{box-shadow:0 4px 20px rgba(212,160,23,0.45);transform:translateY(-1px);}
-
-.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
-.ham span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s;}
-.ham.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
-.ham.open span:nth-child(2){opacity:0;}
-.ham.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
-.mob-menu{
-  display:none;position:fixed;top:66px;left:0;right:0;
-  background:var(--dark2);border-bottom:1px solid var(--border);
-  padding:20px 5%;z-index:999;flex-direction:column;gap:4px;
-}
-.mob-menu.open{display:flex;}
-.mob-menu a{padding:13px 0;font-size:15px;font-weight:600;color:var(--text2);border-bottom:1px solid var(--bord2);display:block;transition:color .2s;}
-.mob-menu a:hover{color:var(--gold);}
-.mob-menu .m-cta{margin-top:12px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;padding:13px 20px;border-radius:5px;text-align:center;border-bottom:none;font-weight:800;}
-
-/* ══ TICKER ══ */
-.ticker{margin-top:66px;background:var(--dark2);border-bottom:1px solid var(--border);padding:8px 0;overflow:hidden;}
-.ticker-inner{display:flex;white-space:nowrap;animation:tick 38s linear infinite;}
-.ticker-inner:hover{animation-play-state:paused;}
-@keyframes tick{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-.ti{display:inline-flex;align-items:center;gap:8px;padding:0 24px;border-right:1px solid var(--bord2);font-family:'DM Mono',monospace;font-size:11px;}
-.ti-p{color:rgba(255,255,255,.6);font-weight:500;}
-.ti-v{color:rgba(255,255,255,.3);}
-.ti-u{color:var(--green);}
-.ti-d{color:var(--red);}
-
-/* ══ HERO ══ */
-#hero{position:relative;min-height:100vh;display:flex;flex-direction:column;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;z-index:0;}
-#bgCanvas{position:absolute;inset:0;width:100%;height:100%;opacity:.4;}
-.hero-grid-overlay{
-  position:absolute;inset:0;z-index:1;
-  background-image:linear-gradient(rgba(212,160,23,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(212,160,23,.07) 1px,transparent 1px);
-  background-size:65px 65px;
-  mask-image:radial-gradient(ellipse 90% 80% at 50% 50%,black 20%,transparent 80%);
-  -webkit-mask-image:radial-gradient(ellipse 90% 80% at 50% 50%,black 20%,transparent 80%);
-}
-.hero-fade{
-  position:absolute;inset:0;z-index:2;
-  background:linear-gradient(180deg,rgba(6,11,20,.6) 0%,transparent 30%,transparent 65%,var(--dark) 100%);
-}
-#candleHero{position:absolute;right:0;top:0;bottom:0;width:55%;height:100%;z-index:2;opacity:.6;}
-
-.hero-inner{
-  position:relative;z-index:3;flex:1;
-  display:flex;align-items:center;
-  padding:80px 5% 60px;
-}
-.hero-left{max-width:620px;}
-
-.ib-badge{
-  display:inline-flex;align-items:center;gap:9px;
-  background:rgba(212,160,23,.1);border:1px solid rgba(212,160,23,.3);
-  padding:6px 16px;border-radius:20px;margin-bottom:26px;
-  font-size:11px;font-weight:700;letter-spacing:2px;
-  color:var(--gold2);text-transform:uppercase;
-}
-.ib-dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:glow 1.4s ease-in-out infinite;}
-@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(212,160,23,.6);}50%{box-shadow:0 0 0 7px rgba(212,160,23,0);}}
-
-.hero-h1{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(50px,8vw,96px);
-  line-height:.92;letter-spacing:1px;margin-bottom:20px;
-}
-.h1-w{display:block;color:#fff;}
-.h1-g{
-  display:block;
-  background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold3));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-
-.hero-desc{font-size:clamp(14px,1.7vw,17px);line-height:1.75;color:rgba(241,245,249,.55);max-width:500px;margin-bottom:12px;}
-.hero-co{font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:36px;}
-
-.h-btns{display:flex;gap:12px;flex-wrap:wrap;}
-.btn-g{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-weight:800;font-size:13px;padding:14px 32px;border-radius:5px;display:inline-block;transition:all .3s;}
-.btn-g:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(212,160,23,.45);}
-.btn-o{border:1px solid rgba(212,160,23,.35);color:var(--gold);font-weight:600;font-size:13px;padding:13px 32px;border-radius:5px;display:inline-block;transition:all .3s;background:rgba(212,160,23,.04);}
-.btn-o:hover{background:rgba(212,160,23,.1);}
-
-/* STATS BAR */
-.hero-stats{
-  position:relative;z-index:3;
-  display:grid;grid-template-columns:repeat(4,1fr);
-  border-top:1px solid var(--border);
-  background:rgba(6,11,20,.82);backdrop-filter:blur(16px);
-}
-.hs{padding:22px 28px;border-right:1px solid var(--border);transition:background .3s;position:relative;overflow:hidden;}
-.hs:last-child{border-right:none;}
-.hs:hover{background:rgba(212,160,23,.05);}
-.hs::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--teal));transform:scaleX(0);transform-origin:left;transition:transform .4s;}
-.hs:hover::after{transform:scaleX(1);}
-.hs-n{font-family:'Bebas Neue',sans-serif;font-size:34px;color:var(--gold2);letter-spacing:1px;margin-bottom:2px;}
-.hs-l{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text2);}
-
-/* ══ SECTIONS BASE ══ */
-.sec{padding:90px 5%;}
-.stag{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:12px;}
-.stag::before{content:'';width:18px;height:1px;background:var(--gold);}
-.sh{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,4.5vw,56px);letter-spacing:1.5px;line-height:1;margin-bottom:14px;}
-.sh em{font-style:normal;background:linear-gradient(90deg,var(--gold),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.ssub{font-size:15px;line-height:1.75;color:var(--text2);max-width:580px;margin-bottom:52px;}
-
-/* ══ WHO WE ARE ══ */
-#about{background:var(--dark2);}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
-.about-left h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(26px,3.5vw,46px);letter-spacing:1.5px;line-height:1.05;margin-bottom:18px;}
-.about-left h3 span{background:linear-gradient(90deg,var(--gold),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.about-left p{font-size:15px;line-height:1.85;color:var(--text2);margin-bottom:18px;}
-.about-points{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:28px;}
-.about-points li{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:rgba(241,245,249,.7);line-height:1.6;}
-.ap-ico{width:30px;height:30px;flex-shrink:0;background:rgba(212,160,23,.1);border:1px solid var(--border);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:13px;}
-
-/* ABOUT RIGHT — IB CARD */
-.ib-identity-card{
-  background:var(--glass);border:1px solid var(--border);
-  border-radius:14px;padding:36px;
-  position:relative;overflow:hidden;
-}
-.ib-identity-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,var(--gold),var(--teal),var(--gold));
-}
-.ibc-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:3px;margin-bottom:20px;text-transform:uppercase;}
-.ibc-name{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:3px;color:#fff;margin-bottom:6px;}
-.ibc-sub{font-size:13px;color:var(--text2);margin-bottom:28px;}
-.ibc-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;}
-.ibc-stat{background:rgba(212,160,23,.06);border:1px solid var(--border);border-radius:8px;padding:16px;}
-.ibc-stat-n{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--gold2);letter-spacing:1px;}
-.ibc-stat-l{font-size:11px;color:var(--text2);letter-spacing:1px;margin-top:2px;}
-.ibc-tags{display:flex;flex-wrap:wrap;gap:8px;}
-.ibc-tag{font-size:11px;padding:4px 12px;border-radius:4px;background:rgba(14,165,233,.08);border:1px solid rgba(14,165,233,.15);color:var(--teal);font-weight:600;}
-
-/* ══ VIDEO SECTION ══ */
-#videosec{background:var(--dark);padding:0;overflow:hidden;}
-.video-wrap{display:grid;grid-template-columns:1fr 1fr;min-height:500px;}
-.video-side{position:relative;background:#000;overflow:hidden;}
-#videoCanvas{width:100%;height:100%;display:block;}
-.vid-badge{
-  position:absolute;bottom:20px;left:20px;
-  background:rgba(6,11,20,.88);border:1px solid var(--border);
-  padding:8px 14px;border-radius:6px;
-  font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);
-  display:flex;align-items:center;gap:6px;letter-spacing:1px;
-}
-.rec{width:6px;height:6px;background:var(--red);border-radius:50%;animation:glow2 1s infinite;}
-@keyframes glow2{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.6);}50%{box-shadow:0 0 0 5px rgba(239,68,68,0);}}
-.video-text{padding:60px 50px;display:flex;flex-direction:column;justify-content:center;background:var(--dark3);}
-.video-text p{font-size:15px;line-height:1.8;color:var(--text2);margin-bottom:20px;}
-.v-feats{list-style:none;display:flex;flex-direction:column;gap:13px;margin-bottom:32px;}
-.v-feats li{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:rgba(241,245,249,.7);line-height:1.6;}
-.vfi{width:28px;height:28px;flex-shrink:0;background:rgba(212,160,23,.1);border:1px solid var(--border);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:12px;margin-top:1px;}
-
-/* ══ IB SERVICES WE OFFER ══ */
-#services{background:var(--dark2);}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-.svc-card{
-  background:var(--glass);border:1px solid var(--bord2);
-  border-radius:12px;padding:32px 28px;
-  transition:all .4s;position:relative;overflow:hidden;
-}
-.svc-card:hover{border-color:rgba(212,160,23,.3);transform:translateY(-5px);box-shadow:var(--shadow);}
-.svc-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--teal));transform:scaleX(0);transform-origin:left;transition:transform .4s;}
-.svc-card:hover::after{transform:scaleX(1);}
-.svc-n{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:3px;margin-bottom:18px;}
-.svc-ico{font-size:36px;margin-bottom:16px;display:block;}
-.svc-card h3{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--gold);margin-bottom:12px;}
-.svc-card p{font-size:14px;line-height:1.7;color:var(--text2);}
-
-/* ══ PARTNER BROKERS ══ */
-#brokers{background:var(--dark);}
-.brokers-intro{font-size:15px;line-height:1.8;color:var(--text2);max-width:600px;margin-bottom:48px;}
-
-/* ══ NEW BROKER CARDS WITH SIGNUP ══ */
-.broker-cards-new{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:36px;}
-.bcn{
-  background:var(--glass);border:1px solid var(--bord2);
-  border-radius:14px;padding:28px;transition:all .35s;
-  position:relative;overflow:hidden;display:flex;flex-direction:column;
-}
-.bcn::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:opacity .3s;}
-.bcn:hover{border-color:rgba(212,160,23,.3);transform:translateY(-4px);box-shadow:var(--shadow);}
-.bcn:hover::before{opacity:1;}
-
-/* eToro green accent */
-.bcn.etoro::before{background:linear-gradient(90deg,#00c853,#1de9b6);}
-.bcn.etoro:hover{border-color:rgba(0,200,83,.3);}
-/* XTB blue accent */
-.bcn.xtb::before{background:linear-gradient(90deg,#0056b3,#0099ff);}
-.bcn.xtb:hover{border-color:rgba(0,86,179,.3);}
-/* FP Markets red accent */
-.bcn.fpmarkets::before{background:linear-gradient(90deg,#c0392b,#e74c3c);}
-.bcn.fpmarkets:hover{border-color:rgba(192,57,43,.3);}
-/* AdroFx purple accent */
-.bcn.adrofx::before{background:linear-gradient(90deg,#7c3aed,#a855f7);}
-.bcn.adrofx:hover{border-color:rgba(124,58,237,.3);}
-/* Admiral Markets teal accent */
-.bcn.admiral::before{background:linear-gradient(90deg,#0073a8,#00b4d8);}
-.bcn.admiral:hover{border-color:rgba(0,115,168,.3);}
-/* Libertex orange accent */
-.bcn.libertex::before{background:linear-gradient(90deg,#ff6b00,#ffaa00);}
-.bcn.libertex:hover{border-color:rgba(255,107,0,.3);}
-
-.bcn-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;}
-.bcn-logo-wrap{display:flex;align-items:center;gap:12px;}
-.bcn-logo-icon{
-  width:auto;min-width:80px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;overflow:hidden;background:#fff;padding:6px 14px;
-}
-.bcn-logo-icon img{width:100%;height:100%;object-fit:contain;}
-.bcn-logo-text{font-weight:900;letter-spacing:-0.5px;font-size:16px;line-height:1;white-space:nowrap;}
-.adrofx .bcn-logo-icon{background:#1a0a35;}
-
-.bcn-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:#fff;line-height:1;}
-.bcn-tagline{font-size:11px;color:var(--text2);margin-top:2px;}
-.bcn-badge{font-size:9px;padding:3px 9px;border-radius:3px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);color:var(--green);font-weight:700;letter-spacing:1px;font-family:'DM Mono',monospace;white-space:nowrap;}
-.bcn-reg{font-family:'DM Mono',monospace;font-size:9px;color:var(--teal);letter-spacing:2px;margin-bottom:10px;text-transform:uppercase;}
-.bcn-desc{font-size:13px;color:var(--text2);line-height:1.65;margin-bottom:16px;flex:1;}
-.bcn-chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:20px;}
-.bcn-chip{font-size:10px;padding:3px 9px;border-radius:3px;background:rgba(255,255,255,.05);border:1px solid var(--bord2);color:var(--text2);}
-.bcn-signup{
-  display:block;width:100%;text-align:center;
-  font-weight:800;font-size:13px;letter-spacing:.3px;
-  padding:12px 20px;border-radius:7px;
-  transition:all .3s;border:none;cursor:pointer;
-  font-family:'Plus Jakarta Sans',sans-serif;
-}
-.etoro .bcn-signup{background:linear-gradient(135deg,#00c853,#1de9b6);color:#fff;}
-.etoro .bcn-signup:hover{box-shadow:0 6px 22px rgba(0,200,83,.4);transform:translateY(-1px);}
-.xtb .bcn-signup{background:linear-gradient(135deg,#0056b3,#0099ff);color:#fff;}
-.xtb .bcn-signup:hover{box-shadow:0 6px 22px rgba(0,86,179,.4);transform:translateY(-1px);}
-.fpmarkets .bcn-signup{background:linear-gradient(135deg,#c0392b,#e74c3c);color:#fff;}
-.fpmarkets .bcn-signup:hover{box-shadow:0 6px 22px rgba(192,57,43,.4);transform:translateY(-1px);}
-.adrofx .bcn-signup{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;}
-.adrofx .bcn-signup:hover{box-shadow:0 6px 22px rgba(124,58,237,.4);transform:translateY(-1px);}
-.admiral .bcn-signup{background:linear-gradient(135deg,#0073a8,#00b4d8);color:#fff;}
-.admiral .bcn-signup:hover{box-shadow:0 6px 22px rgba(0,115,168,.4);transform:translateY(-1px);}
-.libertex .bcn-signup{background:linear-gradient(135deg,#ff6b00,#ffaa00);color:#fff;}
-.libertex .bcn-signup:hover{box-shadow:0 6px 22px rgba(255,107,0,.4);transform:translateY(-1px);}
-
-/* Status dot */
-.bcn-status{width:7px;height:7px;border-radius:50%;background:var(--green);animation:glow3 1.5s ease-in-out infinite;flex-shrink:0;margin-top:3px;}
-@keyframes glow3{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.5);}50%{box-shadow:0 0 0 5px rgba(34,197,94,0);}}
-
-/* ══ HOW WE OPERATE ══ */
-#how{background:var(--dark2);}
-.flow-row{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;}
-.flow-row::before{content:'';position:absolute;top:40px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),var(--teal),var(--gold),transparent);}
-.flow-step{text-align:center;padding:0 10px;position:relative;z-index:1;}
-.flow-orb{width:80px;height:80px;margin:0 auto 18px;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--dark2);font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--gold);position:relative;z-index:1;transition:all .4s;}
-.flow-step:hover .flow-orb{background:var(--gold);color:#000;box-shadow:0 0 0 8px rgba(212,160,23,.12);}
-.flow-emo{font-size:24px;margin-bottom:12px;}
-.flow-step h4{font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;}
-.flow-step p{font-size:12px;color:var(--text2);line-height:1.6;}
-
-/* ══ LIVE MARKETS ══ */
-#markets{background:var(--dark3);}
-.mkts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-.mkt{background:rgba(255,255,255,.03);border:1px solid var(--bord2);border-radius:10px;padding:18px;transition:all .3s;}
-.mkt:hover{border-color:rgba(212,160,23,.2);background:rgba(212,160,23,.04);}
-.mkt-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
-.mkt-pair{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;}
-.mkt-chg{font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;font-family:'DM Mono',monospace;}
-.mkt-chg.u{background:rgba(34,197,94,.12);color:var(--green);}
-.mkt-chg.d{background:rgba(239,68,68,.12);color:var(--red);}
-.mkt-price{font-family:'DM Mono',monospace;font-size:17px;font-weight:500;margin-bottom:10px;}
-.mkt-price.u{color:var(--green);}
-.mkt-price.d{color:var(--red);}
-canvas.sp{width:100%;height:54px;display:block;}
-
-/* ══ WHY PARTNER WITH US ══ */
-#why{background:var(--dark);}
-.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
-.wc{background:var(--dark);padding:36px 24px;text-align:center;transition:background .3s;}
-.wc:hover{background:rgba(212,160,23,.05);}
-.wc-n{font-family:'Bebas Neue',sans-serif;font-size:50px;background:linear-gradient(135deg,var(--gold),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px;}
-.wc h4{font-size:14px;font-weight:700;margin-bottom:8px;}
-.wc p{font-size:13px;color:var(--text2);line-height:1.6;}
-
-/* ══ TESTIMONIALS ══ */
-#testi{background:var(--dark2);}
-.testi-overflow{overflow:hidden;}
-.testi-track{display:flex;gap:20px;transition:transform .5s cubic-bezier(.4,0,.2,1);}
-.tc{
-  min-width:calc(50% - 10px);flex-shrink:0;
-  background:rgba(255,255,255,.03);border:1px solid var(--bord2);
-  border-radius:12px;padding:32px;position:relative;overflow:hidden;
-}
-.tc::after{content:'\201C';position:absolute;bottom:-10px;right:16px;font-size:110px;color:rgba(212,160,23,.06);font-family:serif;line-height:1;}
-.tc-stars{color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:14px;}
-.tc-text{font-size:15px;line-height:1.8;color:var(--text2);margin-bottom:22px;}
-.tc-auth{display:flex;align-items:center;gap:12px;}
-.tc-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--teal));display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:15px;color:#000;flex-shrink:0;}
-.tc-name{font-weight:700;font-size:14px;margin-bottom:2px;}
-.tc-role{font-size:11px;color:var(--text2);}
-.t-ctrl{display:flex;gap:10px;align-items:center;}
-.t-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--text2);font-size:14px;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;}
-.t-btn:hover{background:var(--gold);border-color:var(--gold);color:#000;}
-.t-dot{width:7px;height:7px;border-radius:50%;background:var(--border);border:none;cursor:pointer;transition:all .3s;}
-.t-dot.on{background:var(--gold);width:20px;border-radius:4px;}
-
-/* ══ CONTACT ══ */
-#contact{background:var(--dark2);}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
-.cl h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,52px);letter-spacing:1.5px;line-height:1.05;margin-bottom:16px;}
-.cl h3 span{background:linear-gradient(90deg,var(--gold),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.cl p{font-size:15px;line-height:1.8;color:var(--text2);margin-bottom:32px;}
-.cinfo{display:flex;flex-direction:column;gap:16px;}
-.ci{display:flex;align-items:center;gap:14px;font-size:14px;color:var(--text2);}
-.ci-ico{width:40px;height:40px;flex-shrink:0;background:rgba(212,160,23,.1);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;}
-.ci a{color:var(--gold2);transition:color .2s;}
-.ci a:hover{color:var(--gold3);}
-.ci-lbl{font-size:10px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-bottom:2px;}
-
-.cform{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;padding:36px;}
-.cform h4{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--gold);margin-bottom:24px;}
-.form-col{display:flex;flex-direction:column;gap:14px;}
-.fld{display:flex;flex-direction:column;gap:6px;}
-.fld label{font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--text2);text-transform:uppercase;}
-.fld input,.fld select,.fld textarea{
-  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);
-  border-radius:6px;padding:12px 14px;font-size:14px;color:var(--text);
-  font-family:'Plus Jakarta Sans',sans-serif;transition:border-color .2s;outline:none;width:100%;
-}
-.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--gold);}
-.fld select option{background:var(--dark2);}
-.fld textarea{resize:vertical;min-height:100px;}
-.fsub{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-weight:800;font-size:14px;padding:14px 32px;border-radius:6px;border:none;cursor:pointer;width:100%;margin-top:4px;transition:all .3s;letter-spacing:.3px;font-family:'Plus Jakarta Sans',sans-serif;}
-.fsub:hover{box-shadow:0 8px 28px rgba(212,160,23,.4);transform:translateY(-1px);}
-
-/* ══ CTA ══ */
-#cta{background:var(--dark);text-align:center;padding:100px 5%;position:relative;overflow:hidden;}
-#cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(212,160,23,.07),transparent);}
-#cta::after{content:'IBPIPS';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(100px,18vw,240px);letter-spacing:10px;color:rgba(212,160,23,.025);white-space:nowrap;pointer-events:none;z-index:0;}
-#cta>*{position:relative;z-index:1;}
-.cta-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5.5vw,72px);letter-spacing:2px;margin-bottom:16px;line-height:1;}
-.cta-h span{background:linear-gradient(90deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.cta-sub{font-size:16px;color:var(--text2);max-width:460px;margin:0 auto 44px;line-height:1.7;}
-.cta-row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
-
-/* ══ ETORO BOTTOM BANNER ══ */
-.etoro-bottom-banner{
-  background:#0a1628;
-  padding:32px 5%;
-  text-align:center;
-  border-top:1px solid rgba(0,200,83,.15);
-  border-bottom:1px solid rgba(0,200,83,.15);
-}
-.etoro-bottom-inner{
-  display:inline-flex;align-items:center;gap:20px;
-  background:linear-gradient(135deg,#00c853,#1de9b6,#0091ea);
-  padding:20px 40px;border-radius:14px;
-  max-width:680px;width:100%;
-  transition:transform .3s, box-shadow .3s;
-}
-.etoro-bottom-inner:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(0,200,83,.3);}
-.etoro-e-icon{background:#fff;color:#00c853;border-radius:50%;width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;flex-shrink:0;font-family:sans-serif;}
-.etoro-bottom-text{text-align:left;flex:1;}
-.etoro-bottom-text strong{display:block;font-family:sans-serif;font-weight:900;font-size:18px;color:#fff;letter-spacing:.5px;}
-.etoro-bottom-text span{font-size:12px;color:rgba(255,255,255,.8);font-family:sans-serif;}
-.etoro-bottom-btn{background:#fff;color:#00a651;padding:12px 28px;border-radius:50px;font-weight:800;font-size:13px;font-family:sans-serif;white-space:nowrap;flex-shrink:0;transition:all .2s;}
-.etoro-bottom-inner:hover .etoro-bottom-btn{background:#00c853;color:#fff;}
-.etoro-risk{font-size:9px;color:#666;margin-top:8px;font-family:sans-serif;}
-
-/* ══ FOOTER ══ */
-footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5% 28px;}
-.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;margin-bottom:44px;}
-.fbrand{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:#fff;margin-bottom:14px;display:block;}
-.fbrand .pip{color:var(--gold);}
-.fdesc{font-size:13px;line-height:1.85;color:var(--text2);max-width:260px;margin-bottom:12px;}
-.fco{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;}
-.fcol h5{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
-.fcol ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
-.fcol ul a{font-size:13px;color:var(--text2);transition:color .2s;}
-.fcol ul a:hover{color:var(--gold);}
-.fbot{border-top:1px solid rgba(255,255,255,.06);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
-.fbot p{font-size:11px;color:rgba(241,245,249,.2);}
-.disc{margin-top:20px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.1);border-radius:6px;padding:12px 16px;font-size:10px;line-height:1.7;color:rgba(241,245,249,.25);}
-
-/* WA BUTTON */
-.wa{position:fixed;bottom:24px;right:20px;width:52px;height:52px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;font-size:26px;z-index:998;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .3s;}
-.wa:hover{transform:scale(1.1);}
-
-/* ══ RESPONSIVE ══ */
-@media(max-width:960px){
-  #nav{padding:0 4%;}
-  .nav-links,.nav-cta{display:none;}
-  .ham{display:flex;}
-  .sec{padding:70px 4%;}
-  .hero-inner{padding:60px 4% 40px;}
-  .hero-stats{grid-template-columns:repeat(2,1fr);}
-  .hs{padding:18px 20px;}
-  .hs-n{font-size:28px;}
-  .about-grid{grid-template-columns:1fr;}
-  .video-wrap{grid-template-columns:1fr;}
-  .video-side{height:280px;}
-  .video-text{padding:40px 24px;}
-  .svc-grid{grid-template-columns:1fr 1fr;}
-  .broker-cards-new{grid-template-columns:1fr;}
-  .flow-row{grid-template-columns:repeat(3,1fr);row-gap:40px;}
-  .flow-row::before{display:none;}
-  .mkts-grid{grid-template-columns:repeat(2,1fr);}
-  .why-grid{grid-template-columns:repeat(2,1fr);}
-  .tc{min-width:calc(88% - 10px);}
-  .contact-grid{grid-template-columns:1fr;}
-  .fgrid{grid-template-columns:1fr 1fr;}
-  #candleHero{width:100%;opacity:.2;}
-  .cta-row{flex-direction:column;align-items:center;}
-  .btn-g,.btn-o{width:100%;max-width:300px;text-align:center;}
-  .etoro-bottom-inner{flex-direction:column;text-align:center;gap:14px;}
-  .etoro-bottom-text{text-align:center;}
-}
-@media(max-width:520px){
-  .svc-grid{grid-template-columns:1fr;}
-  .flow-row{grid-template-columns:1fr 1fr;}
-  .mkts-grid{grid-template-columns:1fr 1fr;}
-  .why-grid{grid-template-columns:1fr 1fr;}
-  .fgrid{grid-template-columns:1fr;}
-  .tc{min-width:calc(95% - 10px);}
-  .ibc-stats{grid-template-columns:1fr 1fr;}
-}
-</style>
-</head>
-<body>
-
-<!-- NAV -->
-<nav id="nav">
-  <div class="logo">IB<span class="pip">Pips</span><sup>™</sup><small>AWS Marketing</small></div>
-  <ul class="nav-links">
-    <li><a href="#about">About Us</a></li>
-    <li><a href="#services">IB Services</a></li>
-    <li><a href="#brokers">Our Brokers</a></li>
-    <li><a href="#why">Why IBPips</a></li>
-    <li><a href="#contact" class="nav-cta">Partner With Us</a></li>
-  </ul>
-  <button class="ham" id="ham" onclick="toggleMenu()" aria-label="Open menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<!-- MOBILE MENU -->
-<div class="mob-menu" id="mobMenu">
-  <a href="#about" onclick="closeMenu()">About Us</a>
-  <a href="#services" onclick="closeMenu()">IB Services</a>
-  <a href="#brokers" onclick="closeMenu()">Our Brokers</a>
-  <a href="#why" onclick="closeMenu()">Why IBPips</a>
-  <a href="#contact" class="m-cta" onclick="closeMenu()">Partner With Us →</a>
-</div>
-
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-inner" id="tickerEl"></div>
-</div>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-bg">
-    <canvas id="bgCanvas"></canvas>
-  </div>
-  <div class="hero-grid-overlay"></div>
-  <div class="hero-fade"></div>
-  <canvas id="candleHero"></canvas>
-
-  <div class="hero-inner">
-    <div class="hero-left">
-      <div class="ib-badge">
-        <div class="ib-dot"></div>
-        Certified Introducing Broker
-      </div>
-      <h1 class="hero-h1">
-        <span class="h1-w">Your IB Partner</span>
-        <span class="h1-g">Delivering Volume.</span>
-      </h1>
-      <p style="display:none;">Impact-Site-Verification: 733f61d6-caca-4bf2-8c6c-1e63234289ef</p>
-      <p class="hero-desc">IBPips is an established Introducing Broker bringing thousands of active forex traders to the world's top regulated brokers. We generate consistent volume, manage IB networks, and grow your client base across MENA, Africa, and Southeast Asia.</p>
-      <div class="hero-co">AWS Marketing — IB Services Division</div>
-      <div class="h-btns">
-        <a href="#brokers" class="btn-g">View Our Broker Partners</a>
-        <a href="#contact" class="btn-o">Partner With IBPips</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="hero-stats">
-    <div class="hs"><div class="hs-n" data-count="85000">0</div><div class="hs-l">Active Traders Referred</div></div>
-    <div class="hs"><div class="hs-n" data-count="340">0</div><div class="hs-l">IB Campaigns Managed</div></div>
-    <div class="hs"><div class="hs-n" data-count="42">0</div><div class="hs-l">Countries We Operate In</div></div>
-    <div class="hs"><div class="hs-n" data-count="12">0</div><div class="hs-l">Years as Active IB</div></div>
-  </div>
-</section>
-
-<!-- WHO WE ARE -->
-<section id="about" class="sec">
-  <div class="stag">Who We Are</div>
-  <div class="sh">We Are The <em>Introducing Broker</em></div>
-  <div class="ssub">IBPips is not a marketing agency for brokers — we ARE the IB. We are a professional Introducing Broker that brings volume, verified traders, and a managed sub-IB network directly to our partner brokers.</div>
-
-  <div class="about-grid">
-    <div class="about-left">
-      <h3>A Trusted <span>IB Partner</span><br>for Top Brokers</h3>
-      <p>Operating under AWS Marketing, IBPips has spent over a decade building one of the most active IB networks in MENA, Africa, and Southeast Asia. We refer high-quality, verified traders to our partner brokers — consistently and at scale.</p>
-      <p>Brokers who partner with IBPips gain access to our entire network of sub-IBs, traders, and marketing infrastructure — without the overhead of managing it themselves.</p>
-      <ul class="about-points">
-        <li><div class="ap-ico">✅</div><span>We refer <strong>real, verified traders</strong> — no click farms, no low-quality leads</span></li>
-        <li><div class="ap-ico">🌍</div><span>Active in <strong>42 countries</strong> with native-language IB teams on the ground</span></li>
-        <li><div class="ap-ico">🔗</div><span>We manage a <strong>3-tier sub-IB network</strong> that compounds volume for your broker</span></li>
-        <li><div class="ap-ico">📊</div><span>Full <strong>transparency reporting</strong> — volume, FTDs, lots traded, and active accounts</span></li>
-        <li><div class="ap-ico">⚡</div><span>Fast onboarding — we can be live with your broker in <strong>under 48 hours</strong></span></li>
-      </ul>
-    </div>
-
-    <div>
-      <div class="ib-identity-card">
-        <div class="ibc-label">IBPips — IB Profile</div>
-        <div class="ibc-name">IBPips™</div>
-        <div class="ibc-sub">Professional Introducing Broker · AWS Marketing</div>
-        <div class="ibc-stats">
-          <div class="ibc-stat">
-            <div class="ibc-stat-n" data-count="85">0</div>
-            <div class="ibc-stat-l">K+ Referred Traders</div>
-          </div>
-          <div class="ibc-stat">
-            <div class="ibc-stat-n" data-count="12">0</div>
-            <div class="ibc-stat-l">Years Active as IB</div>
-          </div>
-          <div class="ibc-stat">
-            <div class="ibc-stat-n" data-count="42">0</div>
-            <div class="ibc-stat-l">Countries Covered</div>
-          </div>
-          <div class="ibc-stat">
-            <div class="ibc-stat-n" data-count="3">0</div>
-            <div class="ibc-stat-l">Sub-IB Tiers Managed</div>
-          </div>
-        </div>
-        <div class="ibc-tags">
-          <span class="ibc-tag">MENA Markets</span>
-          <span class="ibc-tag">Africa Focus</span>
-          <span class="ibc-tag">Southeast Asia</span>
-          <span class="ibc-tag">Arabic Content</span>
-          <span class="ibc-tag">Sub-IB Network</span>
-          <span class="ibc-tag">Forex Marketing</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- VIDEO / CANDLE SECTION -->
-<section id="videosec">
-  <div class="video-wrap">
-    <div class="video-side">
-      <canvas id="videoCanvas"></canvas>
-      <div class="vid-badge"><div class="rec"></div>Live Candlestick Feed</div>
-    </div>
-    <div class="video-text">
-      <div class="stag">Why We Deliver</div>
-      <div class="sh" style="margin-bottom:12px;">We Know <em>Forex</em></div>
-      <p>IBPips isn't just an IB on paper. Our team lives and breathes forex. We understand what traders want, how they think, and how to refer the right traders to the right brokers — maximizing volume and LTV for our broker partners.</p>
-      <ul class="v-feats">
-        <li><div class="vfi">📈</div><span>Our traders are pre-qualified — we only refer clients likely to be active, depositing traders.</span></li>
-        <li><div class="vfi">🤝</div><span>We maintain ongoing engagement with our trader base, reducing churn for your brokerage.</span></li>
-        <li><div class="vfi">🌍</div><span>Regional IB teams in 42 countries handle local language, payment, and support needs.</span></li>
-        <li><div class="vfi">📊</div><span>Monthly volume reports, FTD counts, and active account breakdowns sent to every broker partner.</span></li>
-      </ul>
-      <a href="#contact" class="btn-g">Partner With IBPips</a>
-    </div>
-  </div>
-</section>
-
-<!-- IB SERVICES WE PROVIDE -->
-<section id="services" class="sec">
-  <div class="stag">IB Services</div>
-  <div class="sh">What We Bring <em>To Your Broker</em></div>
-  <div class="ssub">As your Introducing Broker, here is everything IBPips delivers to broker partners who work with us.</div>
-
-  <div class="svc-grid">
-    <div class="svc-card">
-      <div class="svc-n">01</div>
-      <span class="svc-ico">👥</span>
-      <h3>Trader Referrals</h3>
-      <p>We refer active, deposit-ready traders from our network across MENA, Africa, and Southeast Asia. All leads are pre-qualified and tracked via your broker's IB portal in real time.</p>
-    </div>
-    <div class="svc-card">
-      <div class="svc-n">02</div>
-      <span class="svc-ico">🔗</span>
-      <h3>Sub-IB Network</h3>
-      <p>We manage a 3-tier sub-IB structure with hundreds of active sub-IBs under us. All volume from our sub-IB network flows through our master IB account with your broker.</p>
-    </div>
-    <div class="svc-card">
-      <div class="svc-n">03</div>
-      <span class="svc-ico">📢</span>
-      <h3>Forex Marketing</h3>
-      <p>We run our own paid campaigns across Google, Meta, TikTok, and native networks — bringing new FTDs to your broker under our IB code at no cost to you.</p>
-    </div>
-    <div class="svc-card">
-      <div class="svc-n">04</div>
-      <span class="svc-ico">🌍</span>
-      <h3>Regional Coverage</h3>
-      <p>Native-language teams and IB managers operating in Arabic, Swahili, Bahasa, and French — covering MENA, East Africa, West Africa, and Southeast Asia markets.</p>
-    </div>
-    <div class="svc-card">
-      <div class="svc-n">05</div>
-      <span class="svc-ico">📊</span>
-      <h3>Volume Reporting</h3>
-      <p>Monthly transparency reports showing FTDs, active accounts, lots traded, and geographic breakdown — so your broker always knows exactly what IBPips is delivering.</p>
-    </div>
-    <div class="svc-card">
-      <div class="svc-n">06</div>
-      <span class="svc-ico">🚀</span>
-      <h3>Fast Onboarding</h3>
-      <p>We can be live under your broker's IB program within 48 hours. Our onboarding process is smooth, compliant, and designed to get volume flowing as fast as possible.</p>
-    </div>
-  </div>
-</section>
-
-<!-- LIBERTEX BANNER -->
-<a href="https://promo.libertex.org/lp/en-en/welcome-bonus/?aff_id=76141&cxd=76141_942626" target="_blank" class="libertex-banner-wrap">
-  <div class="libertex-banner">
-    <div class="ltx-glow"></div>
-    <div class="ltx-left">
-      <div class="ltx-logo">
-        <span style="color:#ff6b00;font-weight:900;">Liber</span><span style="color:#ffaa00;font-weight:900;">tex</span>
-      </div>
-      <div class="ltx-badge">🏆 Award-Winning Broker · 25+ Years</div>
-    </div>
-    <div class="ltx-center">
-      <div class="ltx-headline">Trade Forex, Stocks &amp; Crypto</div>
-      <div class="ltx-sub">0% Commission · Welcome Bonus Available</div>
-      <div class="ltx-chips">
-        <span>Forex</span><span>Stocks</span><span>Crypto</span><span>Commodities</span><span>ETFs</span>
-      </div>
-    </div>
-    <div class="ltx-right">
-      <div class="ltx-cta">
-        Start Trading Now
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </div>
-      <div class="ltx-disc">Capital at risk. T&amp;Cs apply.</div>
-    </div>
-  </div>
-</a>
-
-<style>
-.libertex-banner-wrap{display:block;text-decoration:none;padding:0 5%;background:#060f1e;border-top:1px solid rgba(255,107,0,.15);border-bottom:1px solid rgba(255,107,0,.15);}
-.libertex-banner{
-  position:relative;overflow:hidden;
-  display:flex;align-items:center;justify-content:space-between;gap:24px;
-  background:linear-gradient(135deg,rgba(255,107,0,.08) 0%,rgba(255,170,0,.06) 50%,rgba(255,107,0,.04) 100%);
-  border:1px solid rgba(255,107,0,.25);
-  border-radius:16px;padding:28px 36px;margin:0 auto;
-  max-width:1200px;
-  transition:all .35s;
-}
-.libertex-banner-wrap:hover .libertex-banner{
-  border-color:rgba(255,107,0,.55);
-  box-shadow:0 0 60px rgba(255,107,0,.15),0 12px 48px rgba(0,0,0,.3);
-  transform:translateY(-2px);
-}
-.ltx-glow{
-  position:absolute;top:-60px;left:50%;transform:translateX(-50%);
-  width:500px;height:200px;
-  background:radial-gradient(ellipse,rgba(255,140,0,.12),transparent 70%);
-  pointer-events:none;
-}
-.ltx-left{display:flex;flex-direction:column;gap:8px;flex-shrink:0;}
-.ltx-logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:28px;line-height:1;letter-spacing:-0.5px;}
-.ltx-badge{font-size:11px;color:rgba(255,170,0,.8);font-family:'DM Mono',monospace;letter-spacing:1px;white-space:nowrap;}
-.ltx-center{flex:1;text-align:center;}
-.ltx-headline{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,3vw,36px);letter-spacing:2px;color:#fff;margin-bottom:6px;}
-.ltx-sub{font-size:13px;color:rgba(241,245,249,.55);margin-bottom:14px;}
-.ltx-chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;}
-.ltx-chips span{font-size:10px;padding:3px 10px;border-radius:20px;background:rgba(255,107,0,.12);border:1px solid rgba(255,107,0,.25);color:rgba(255,170,0,.9);font-weight:700;letter-spacing:.5px;}
-.ltx-right{display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0;}
-.ltx-cta{
-  display:inline-flex;align-items:center;gap:8px;
-  background:linear-gradient(135deg,#ff6b00,#ffaa00);
-  color:#fff;font-weight:800;font-size:14px;
-  padding:14px 28px;border-radius:8px;white-space:nowrap;
-  transition:all .3s;letter-spacing:.3px;
-  font-family:'Plus Jakarta Sans',sans-serif;
-}
-.libertex-banner-wrap:hover .ltx-cta{box-shadow:0 8px 28px rgba(255,107,0,.5);transform:translateY(-1px);}
-.ltx-disc{font-size:9px;color:rgba(241,245,249,.25);text-align:center;font-family:'DM Mono',monospace;letter-spacing:.5px;}
-
-@media(max-width:768px){
-  .libertex-banner-wrap{padding:0 4%;}
-  .libertex-banner{flex-direction:column;text-align:center;padding:24px 20px;gap:16px;}
-  .ltx-left{align-items:center;}
-  .ltx-badge{font-size:10px;}
-}
-</style>
-
-<!-- GTCFX BANNER -->
-<a href="https://mygtcportal.com/getview?view=register&token=2r8towwwAowwwwww" target="_blank" class="gtcfx-banner-wrap">
-  <div class="gtcfx-banner">
-    <div class="gtcfx-glow"></div>
-    <div class="gtcfx-left">
-      <div class="gtcfx-logo">
-        <span style="color:#00c2ff;font-weight:900;">GTC</span><span style="color:#ffffff;font-weight:900;">fx</span>
-      </div>
-      <div class="gtcfx-badge">🌐 Global Trading · Trusted Broker</div>
-    </div>
-    <div class="gtcfx-center">
-      <div class="gtcfx-headline">Trade with GTCfx Today</div>
-      <div class="gtcfx-sub">Competitive Spreads · Fast Execution · Multi-Asset Trading</div>
-      <div class="gtcfx-chips">
-        <span>Forex</span><span>Indices</span><span>Commodities</span><span>Crypto</span><span>Stocks</span>
-      </div>
-    </div>
-    <div class="gtcfx-right">
-      <div class="gtcfx-cta">
-        Start Trading Now
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </div>
-      <div class="gtcfx-disc">Capital at risk. T&amp;Cs apply.</div>
-    </div>
-  </div>
-</a>
-
-<style>
-.gtcfx-banner-wrap{display:block;text-decoration:none;padding:0 5%;background:#060f1e;border-bottom:1px solid rgba(0,194,255,.15);}
-.gtcfx-banner{
-  position:relative;overflow:hidden;
-  display:flex;align-items:center;justify-content:space-between;gap:24px;
-  background:linear-gradient(135deg,rgba(0,194,255,.08) 0%,rgba(0,120,220,.06) 50%,rgba(0,194,255,.04) 100%);
-  border:1px solid rgba(0,194,255,.25);
-  border-radius:16px;padding:28px 36px;margin:0 auto;
-  max-width:1200px;
-  transition:all .35s;
-}
-.gtcfx-banner-wrap:hover .gtcfx-banner{
-  border-color:rgba(0,194,255,.55);
-  box-shadow:0 0 60px rgba(0,194,255,.15),0 12px 48px rgba(0,0,0,.3);
-  transform:translateY(-2px);
-}
-.gtcfx-glow{
-  position:absolute;top:-60px;left:50%;transform:translateX(-50%);
-  width:500px;height:200px;
-  background:radial-gradient(ellipse,rgba(0,194,255,.12),transparent 70%);
-  pointer-events:none;
-}
-.gtcfx-left{display:flex;flex-direction:column;gap:8px;flex-shrink:0;}
-.gtcfx-logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:28px;line-height:1;letter-spacing:-0.5px;}
-.gtcfx-badge{font-size:11px;color:rgba(0,194,255,.8);font-family:'DM Mono',monospace;letter-spacing:1px;white-space:nowrap;}
-.gtcfx-center{flex:1;text-align:center;}
-.gtcfx-headline{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,3vw,36px);letter-spacing:2px;color:#fff;margin-bottom:6px;}
-.gtcfx-sub{font-size:13px;color:rgba(241,245,249,.55);margin-bottom:14px;}
-.gtcfx-chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;}
-.gtcfx-chips span{font-size:10px;padding:3px 10px;border-radius:20px;background:rgba(0,194,255,.12);border:1px solid rgba(0,194,255,.25);color:rgba(0,194,255,.9);font-weight:700;letter-spacing:.5px;}
-.gtcfx-right{display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0;}
-.gtcfx-cta{
-  display:inline-flex;align-items:center;gap:8px;
-  background:linear-gradient(135deg,#0077cc,#00c2ff);
-  color:#fff;font-weight:800;font-size:14px;
-  padding:14px 28px;border-radius:8px;white-space:nowrap;
-  transition:all .3s;letter-spacing:.3px;
-  font-family:'Plus Jakarta Sans',sans-serif;
-}
-.gtcfx-banner-wrap:hover .gtcfx-cta{box-shadow:0 8px 28px rgba(0,194,255,.5);transform:translateY(-1px);}
-.gtcfx-disc{font-size:9px;color:rgba(241,245,249,.25);text-align:center;font-family:'DM Mono',monospace;letter-spacing:.5px;}
-
-@media(max-width:768px){
-  .gtcfx-banner-wrap{padding:0 4%;}
-  .gtcfx-banner{flex-direction:column;text-align:center;padding:24px 20px;gap:16px;}
-  .gtcfx-left{align-items:center;}
-  .gtcfx-badge{font-size:10px;}
-}
-</style>
-
-<!-- BROKER PARTNERS -->
-<section id="brokers" class="sec">
-  <div class="stag">Our Broker Partners</div>
-  <div class="sh">Brokers We <em>Work With</em></div>
-  <p class="brokers-intro">IBPips is an active Introducing Broker with several of the world's leading regulated forex and CFD brokers. We generate consistent volume and maintain strong relationships with each partner.</p>
-
-  <div class="broker-cards-new">
-
-    <!-- eToro -->
-    <div class="bcn etoro">
-      <div class="bcn-header">
-        <div class="bcn-logo-wrap">
-          <div class="bcn-logo-icon"><span class="bcn-logo-text" style="color:#00c853;font-size:18px;font-family:'Plus Jakarta Sans',sans-serif;">e<span style="color:#000;">Toro</span></span></div>
-          <div>
-            <div class="bcn-name">eTORO</div>
-            <div class="bcn-tagline">Social Trading Platform</div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <div class="bcn-status"></div>
-          <span class="bcn-badge">OUR TRUSTED BROKER</span>
-        </div>
-      </div>
-      <div class="bcn-reg">Regulated · FCA · ASIC · CySEC · FinCEN</div>
-      <p class="bcn-desc">eToro is the world's leading social trading platform with over 30 million registered users. Offering stocks, crypto, forex, ETFs, and commodities all in one place — eToro's copy trading feature makes it uniquely attractive to new traders across MENA and Africa.</p>
-      <div class="bcn-chips">
-        <span class="bcn-chip">30M+ Users</span>
-        <span class="bcn-chip">Copy Trading</span>
-        <span class="bcn-chip">Stocks · Crypto · Forex</span>
-        <span class="bcn-chip">$0 Commission Stocks</span>
-        <span class="bcn-chip">Social Feed</span>
-      </div>
-      <a href="https://med.etoro.com/B21187_A128651_TClick.aspx" target="_blank" class="bcn-signup">
-        Open eToro Account →
-      </a>
-    </div>
-
-    <!-- XTB -->
-    <div class="bcn xtb">
-      <div class="bcn-header">
-        <div class="bcn-logo-wrap">
-          <div class="bcn-logo-icon"><span class="bcn-logo-text" style="color:#d32f2f;font-size:20px;font-family:'Bebas Neue',sans-serif;letter-spacing:3px;">XTB</span></div>
-          <div>
-            <div class="bcn-name">XTB</div>
-            <div class="bcn-tagline">Award-Winning CFD Broker</div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <div class="bcn-status"></div>
-          <span class="bcn-badge">OUR TRUSTED BROKER</span>
-        </div>
-      </div>
-      <div class="bcn-reg">Regulated · FCA · KNF · CySEC · IFSC</div>
-      <p class="bcn-desc">XTB is a globally recognised, award-winning CFD and forex broker listed on the Warsaw Stock Exchange. With their proprietary xStation 5 platform, ultra-competitive spreads, and a broad range of 5,800+ instruments, XTB is a top choice for serious traders worldwide.</p>
-      <div class="bcn-chips">
-        <span class="bcn-chip">5,800+ Instruments</span>
-        <span class="bcn-chip">xStation 5</span>
-        <span class="bcn-chip">Stock CFDs</span>
-        <span class="bcn-chip">0% Commission Stocks</span>
-        <span class="bcn-chip">Listed Company</span>
-      </div>
-      <a href="https://geolink.xtb.com/VdiZi" target="_blank" class="bcn-signup">
-        Open XTB Account →
-      </a>
-    </div>
-
-    <!-- FP Markets -->
-    <div class="bcn fpmarkets">
-      <div class="bcn-header">
-        <div class="bcn-logo-wrap">
-          <div class="bcn-logo-icon"><span class="bcn-logo-text" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;"><span style="color:#0099cc;font-weight:900;">FP</span><span style="color:#333;font-weight:700;"> Markets</span></span></div>
-          <div>
-            <div class="bcn-name">FP MARKETS</div>
-            <div class="bcn-tagline">ECN Forex & CFD Broker</div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <div class="bcn-status"></div>
-          <span class="bcn-badge">OUR TRUSTED BROKER</span>
-        </div>
-      </div>
-      <div class="bcn-reg">Regulated · ASIC · CySEC · FSA</div>
-      <p class="bcn-desc">FP Markets is an award-winning Australian ECN broker offering ultra-tight spreads from 0.0 pips with fast execution. With MT4/MT5 and cTrader support, a broad range of 10,000+ instruments, and a competitive IB program, FP Markets is a top pick for active traders across MENA and Asia.</p>
-      <div class="bcn-chips">
-        <span class="bcn-chip">10,000+ Instruments</span>
-        <span class="bcn-chip">ECN Spreads from 0.0</span>
-        <span class="bcn-chip">MT4 / MT5 / cTrader</span>
-        <span class="bcn-chip">ASIC Regulated</span>
-        <span class="bcn-chip">Islamic Accounts</span>
-      </div>
-      <a href="https://www.fpmarkets.com/?fpm-affiliate-utm-source=IB&fpm-affiliate-agt=66398" target="_blank" class="bcn-signup">
-        Open FP Markets Account →
-      </a>
-    </div>
-
-    <!-- AdroFx -->
-    <div class="bcn adrofx">
-      <div class="bcn-header">
-        <div class="bcn-logo-wrap">
-          <div class="bcn-logo-icon"><span class="bcn-logo-text" style="color:#a78bfa;font-size:15px;font-family:'Plus Jakarta Sans',sans-serif;">Adro<span style="color:#fff;">Fx</span></span></div>
-          <div>
-            <div class="bcn-name">ADROFX</div>
-            <div class="bcn-tagline">Forex & CFD Specialist</div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <div class="bcn-status"></div>
-          <span class="bcn-badge">OUR TRUSTED BROKER</span>
-        </div>
-      </div>
-      <div class="bcn-reg">Regulated · SVGFSA · Global Reach</div>
-      <p class="bcn-desc">AdroFx is a fast-growing multi-asset broker specialising in forex and CFD trading with a strong presence in MENA, Africa, and CIS markets. Known for its generous IB program, competitive spreads, and support for MT4/MT5, AdroFx is a preferred broker for active sub-IB networks.</p>
-      <div class="bcn-chips">
-        <span class="bcn-chip">MT4 / MT5</span>
-        <span class="bcn-chip">High IB Commission</span>
-        <span class="bcn-chip">MENA Friendly</span>
-        <span class="bcn-chip">Crypto Deposits</span>
-        <span class="bcn-chip">Islamic Accounts</span>
-      </div>
-      <a href="https://adrofx.club/?refid=AWVYN5" target="_blank" class="bcn-signup">
-        Open AdroFx Account →
-      </a>
-    </div>
-
-    <!-- Admiral Markets -->
-    <div class="bcn admiral">
-      <div class="bcn-header">
-        <div class="bcn-logo-wrap">
-          <div class="bcn-logo-icon"><span class="bcn-logo-text" style="color:#0073a8;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;">ADMIRALS</span></div>
-          <div>
-            <div class="bcn-name">ADMIRAL MARKETS</div>
-            <div class="bcn-tagline">Admirals · Global Broker</div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <div class="bcn-status"></div>
-          <span class="bcn-badge">OUR TRUSTED BROKER</span>
-        </div>
-      </div>
-      <div class="bcn-reg">Regulated · FCA · ASIC · CySEC · EFSA · JSC</div>
-      <p class="bcn-desc">Admiral Markets (now Admirals) is an award-winning broker with over 20 years of experience. Regulated across multiple top-tier jurisdictions, Admirals offers exceptional trading conditions on MT4/MT5, a wide instrument range, and one of the most reputable IB programs in the industry.</p>
-      <div class="bcn-chips">
-        <span class="bcn-chip">20+ Years</span>
-        <span class="bcn-chip">MT4 / MT5</span>
-        <span class="bcn-chip">8,000+ Instruments</span>
-        <span class="bcn-chip">Top-Tier Regulated</span>
-        <span class="bcn-chip">Strong IB Program</span>
-      </div>
-      <a href="https://admiralmarkets.com/" target="_blank" class="bcn-signup">
-        Open Admirals Account →
-      </a>
-    </div>
-
-    <!-- Libertex -->
-    <div class="bcn libertex">
-      <div class="bcn-header">
-        <div class="bcn-logo-wrap">
-          <div class="bcn-logo-icon"><span class="bcn-logo-text" style="color:#ff6b00;font-size:16px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;">Liber<span style="color:#ffaa00;">tex</span></span></div>
-          <div>
-            <div class="bcn-name">LIBERTEX</div>
-            <div class="bcn-tagline">CFD & Forex Trading Platform</div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <div class="bcn-status"></div>
-          <span class="bcn-badge">OUR TRUSTED BROKER</span>
-        </div>
-      </div>
-      <div class="bcn-reg">Licensed Global Broker · 25+ Years Experience</div>
-      <p class="bcn-desc">Libertex is an award-winning online trading platform with over 25 years of market experience. Offering 0% commission trading on Forex, stocks, crypto, and commodities, Libertex is trusted by millions of traders worldwide — and features an exclusive Welcome Bonus for new sign-ups.</p>
-      <div class="bcn-chips">
-        <span class="bcn-chip">0% Commission</span>
-        <span class="bcn-chip">Welcome Bonus</span>
-        <span class="bcn-chip">Forex · Stocks · Crypto</span>
-        <span class="bcn-chip">25+ Years Experience</span>
-        <span class="bcn-chip">25+ Years Experience</span>
-      </div>
-      <a href="https://promo.libertex.org/lp/en-en/welcome-bonus/?aff_id=76141&cxd=76141_942626" target="_blank" class="bcn-signup">
-        Sign Up to Libertex →
-      </a>
-    </div>
-
-  </div>
-
-  <div style="text-align:center;">
-    <a href="#contact" class="btn-o">Enquire About IB Partnership</a>
-  </div>
-</section>
-
-<!-- HOW WE OPERATE -->
-<section id="how" class="sec">
-  <div class="stag">How It Works</div>
-  <div class="sh" style="margin-bottom:56px;">How We <em>Refer Volume</em> To You</div>
-  <div class="flow-row">
-    <div class="flow-step">
-      <div class="flow-orb">01</div>
-      <div class="flow-emo">🤝</div>
-      <h4>IB Agreement</h4>
-      <p>We sign an IB agreement with your broker and receive our unique IB code and tracking link.</p>
-    </div>
-    <div class="flow-step">
-      <div class="flow-orb">02</div>
-      <div class="flow-emo">📢</div>
-      <h4>We Market You</h4>
-      <p>We promote your broker across our network, campaigns, social media, and sub-IB channels.</p>
-    </div>
-    <div class="flow-step">
-      <div class="flow-orb">03</div>
-      <div class="flow-emo">👥</div>
-      <h4>Traders Register</h4>
-      <p>Traders sign up under our IB link, complete KYC, and make their first deposit with your broker.</p>
-    </div>
-    <div class="flow-step">
-      <div class="flow-orb">04</div>
-      <div class="flow-emo">📈</div>
-      <h4>Volume Flows</h4>
-      <p>Our traders trade actively. Your broker earns spread revenue. We earn commission per lot.</p>
-    </div>
-    <div class="flow-step">
-      <div class="flow-orb">05</div>
-      <div class="flow-emo">🔄</div>
-      <h4>We Scale</h4>
-      <p>We continuously grow our trader base and sub-IB network, compounding volume for your broker.</p>
-    </div>
-  </div>
-</section>
-
-</section>
-
-<!-- IB WITH AFFILIATE MARKETING -->
-<section id="ibaffiliate" class="sec" style="background:var(--dark2);overflow:hidden;position:relative;">
-
-  <!-- Background decorative glow -->
-  <div style="position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(ellipse,rgba(212,160,23,.07),transparent 70%);pointer-events:none;z-index:0;"></div>
-  <div style="position:absolute;bottom:-80px;left:-80px;width:400px;height:400px;background:radial-gradient(ellipse,rgba(14,165,233,.06),transparent 70%);pointer-events:none;z-index:0;"></div>
-
-  <div style="position:relative;z-index:1;">
-    <div class="stag">IB + Affiliate</div>
-    <div class="sh">IB with <em>Affiliate Marketing</em></div>
-    <div class="ssub">IBPips combines the power of traditional Introducing Brokerage with performance-based affiliate marketing — creating a dual-engine model that maximises trader acquisition and commissions across every channel.</div>
-
-    <!-- Two-column model overview -->
-    <div class="ibaff-split">
-      <div class="ibaff-col ibaff-ib">
-        <div class="ibaff-col-icon">🤝</div>
-        <div class="ibaff-col-tag">Traditional Model</div>
-        <h3 class="ibaff-col-title">Introducing Broker <span>(IB)</span></h3>
-        <p class="ibaff-col-desc">An IB acts as a bridge between traders and brokers. IBPips signs an IB agreement, receives a unique IB code, and earns a commission per lot traded by every client referred — for the lifetime of that client.</p>
-        <ul class="ibaff-list">
-          <li><span class="ibaff-icon">📋</span> Formal IB agreement with the broker</li>
-          <li><span class="ibaff-icon">🔁</span> Recurring commission per lot traded</li>
-          <li><span class="ibaff-icon">👤</span> Lifetime client ownership under IB code</li>
-          <li><span class="ibaff-icon">📊</span> Access to IB portal & live volume tracking</li>
-          <li><span class="ibaff-icon">🏗️</span> Sub-IB structure compounds your earnings</li>
-        </ul>
-        <div class="ibaff-earn">
-          <div class="ibaff-earn-label">EARNING MODEL</div>
-          <div class="ibaff-earn-val">Per-Lot Commission</div>
-          <div class="ibaff-earn-sub">Paid monthly · Scales with volume</div>
-        </div>
-      </div>
-
-      <div class="ibaff-divider">
-        <div class="ibaff-plus">+</div>
-      </div>
-
-      <div class="ibaff-col ibaff-aff">
-        <div class="ibaff-col-icon">📣</div>
-        <div class="ibaff-col-tag">Performance Model</div>
-        <h3 class="ibaff-col-title">Affiliate <span>Marketing</span></h3>
-        <p class="ibaff-col-desc">Affiliate marketing pays a fixed bounty or revenue share for every qualified trader sign-up (FTD). IBPips runs paid campaigns on Google, Meta, TikTok, and native networks — driving high-quality first-time depositors to partner brokers.</p>
-        <ul class="ibaff-list">
-          <li><span class="ibaff-icon">💰</span> CPA (Cost Per Acquisition) per FTD</li>
-          <li><span class="ibaff-icon">📢</span> Paid ads across Google, Meta & TikTok</li>
-          <li><span class="ibaff-icon">🌍</span> Geo-targeted campaigns in 42+ countries</li>
-          <li><span class="ibaff-icon">🔗</span> Unique tracking links per campaign & region</li>
-          <li><span class="ibaff-icon">📈</span> Revenue share + CPA hybrid deals available</li>
-        </ul>
-        <div class="ibaff-earn ibaff-earn-aff">
-          <div class="ibaff-earn-label">EARNING MODEL</div>
-          <div class="ibaff-earn-val">CPA + Rev Share</div>
-          <div class="ibaff-earn-sub">Per FTD · Hybrid deals available</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Combined power strip -->
-    <div class="ibaff-power">
-      <div class="ibaff-power-label">THE IBPIPS ADVANTAGE</div>
-      <div class="ibaff-power-title">Why We Combine Both Models</div>
-      <div class="ibaff-power-grid">
-        <div class="ibaff-pw">
-          <div class="ibaff-pw-ico">⚡</div>
-          <h4>Dual Revenue Streams</h4>
-          <p>Earn recurring lot-based IB commissions AND one-time CPA payouts simultaneously — maximising revenue from every single trader referred.</p>
-        </div>
-        <div class="ibaff-pw">
-          <div class="ibaff-pw-ico">🎯</div>
-          <h4>Targeted Acquisition</h4>
-          <p>Affiliate campaigns attract brand-new traders while IB networks retain and activate existing ones — covering the full trader lifecycle.</p>
-        </div>
-        <div class="ibaff-pw">
-          <div class="ibaff-pw-ico">🔗</div>
-          <h4>Sub-IB + Affiliate Stack</h4>
-          <p>Our sub-IBs and affiliates operate under the same master IB code — all volume consolidates upward, multiplying your broker's exposure to IBPips.</p>
-        </div>
-        <div class="ibaff-pw">
-          <div class="ibaff-pw-ico">🌍</div>
-          <h4>Regional Depth</h4>
-          <p>Native-language IB managers and region-specific ad campaigns mean we penetrate markets that traditional global campaigns simply cannot reach.</p>
-        </div>
-        <div class="ibaff-pw">
-          <div class="ibaff-pw-ico">📊</div>
-          <h4>Full Transparency</h4>
-          <p>Every click, FTD, and lot is tracked and reported. Brokers receive monthly performance breakdowns across IB and affiliate channels separately.</p>
-        </div>
-        <div class="ibaff-pw">
-          <div class="ibaff-pw-ico">🚀</div>
-          <h4>Scalable at Any Size</h4>
-          <p>Whether you want 100 or 10,000 new traders — our combined IB + affiliate infrastructure scales on demand without compromising quality.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Funnel visual -->
-    <div class="ibaff-funnel">
-      <div class="ibaff-funnel-title">How the Combined Model Works</div>
-      <div class="ibaff-funnel-row">
-        <div class="ibaff-fn fn-1"><div class="fn-num">01</div><div class="fn-ico">📢</div><div class="fn-label">Traffic & Campaigns</div><div class="fn-sub">Google · Meta · TikTok · Native · WhatsApp Groups</div></div>
-        <div class="ibaff-fn-arrow">→</div>
-        <div class="ibaff-fn fn-2"><div class="fn-num">02</div><div class="fn-ico">👥</div><div class="fn-label">Lead Capture</div><div class="fn-sub">Landing pages · CRM · Sub-IB funnels · Direct referrals</div></div>
-        <div class="ibaff-fn-arrow">→</div>
-        <div class="ibaff-fn fn-3"><div class="fn-num">03</div><div class="fn-ico">✅</div><div class="fn-label">FTD + KYC</div><div class="fn-sub">First deposit made · KYC completed under IB code</div></div>
-        <div class="ibaff-fn-arrow">→</div>
-        <div class="ibaff-fn fn-4"><div class="fn-num">04</div><div class="fn-ico">💸</div><div class="fn-label">Dual Payout</div><div class="fn-sub">CPA affiliate bounty + ongoing per-lot IB commission</div></div>
-        <div class="ibaff-fn-arrow">→</div>
-        <div class="ibaff-fn fn-5"><div class="fn-num">05</div><div class="fn-ico">📈</div><div class="fn-label">Compounding Growth</div><div class="fn-sub">Sub-IBs & affiliates expand the network automatically</div></div>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-top:52px;">
-      <a href="#contact" class="btn-g" style="margin-right:14px;">Become an IB Partner</a>
-      <a href="#contact" class="btn-o">Join Our Affiliate Program</a>
-    </div>
-  </div>
-</section>
-
-<style>
-/* IB AFFILIATE SECTION */
-.ibaff-split{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;margin-bottom:60px;}
-.ibaff-col{background:rgba(255,255,255,.03);border:1px solid var(--bord2);border-radius:16px;padding:36px 32px;display:flex;flex-direction:column;gap:16px;transition:all .35s;position:relative;overflow:hidden;}
-.ibaff-col::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;transition:opacity .3s;opacity:0;}
-.ibaff-ib::after{background:linear-gradient(90deg,var(--gold),var(--gold2));}
-.ibaff-aff::after{background:linear-gradient(90deg,var(--teal),#7c3aed);}
-.ibaff-col:hover{border-color:rgba(212,160,23,.25);transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.35);}
-.ibaff-col:hover::after{opacity:1;}
-.ibaff-col-icon{font-size:40px;line-height:1;}
-.ibaff-col-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--text3);}
-.ibaff-col-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:#fff;line-height:1.1;}
-.ibaff-col-title span{background:linear-gradient(90deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.ibaff-aff .ibaff-col-title span{background:linear-gradient(90deg,var(--teal),#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.ibaff-col-desc{font-size:14px;line-height:1.75;color:var(--text2);}
-.ibaff-list{list-style:none;display:flex;flex-direction:column;gap:11px;flex:1;}
-.ibaff-list li{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:rgba(241,245,249,.72);line-height:1.5;}
-.ibaff-icon{font-size:15px;flex-shrink:0;margin-top:1px;}
-.ibaff-earn{margin-top:4px;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.15);border-radius:10px;padding:16px 20px;}
-.ibaff-earn-aff{background:rgba(14,165,233,.06);border-color:rgba(14,165,233,.15);}
-.ibaff-earn-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:6px;}
-.ibaff-earn-aff .ibaff-earn-label{color:var(--teal);}
-.ibaff-earn-val{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:1.5px;color:#fff;margin-bottom:3px;}
-.ibaff-earn-sub{font-size:11px;color:var(--text2);}
-
-.ibaff-divider{display:flex;align-items:center;justify-content:center;padding:0 24px;}
-.ibaff-plus{font-family:'Bebas Neue',sans-serif;font-size:52px;background:linear-gradient(135deg,var(--gold),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
-
-.ibaff-power{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:16px;padding:44px 40px;margin-bottom:48px;}
-.ibaff-power-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
-.ibaff-power-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(24px,3vw,40px);letter-spacing:2px;color:#fff;margin-bottom:36px;}
-.ibaff-power-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-.ibaff-pw{background:rgba(255,255,255,.03);border:1px solid var(--bord2);border-radius:12px;padding:24px 22px;transition:all .3s;}
-.ibaff-pw:hover{border-color:rgba(212,160,23,.25);background:rgba(212,160,23,.04);}
-.ibaff-pw-ico{font-size:28px;margin-bottom:12px;}
-.ibaff-pw h4{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;}
-.ibaff-pw p{font-size:13px;color:var(--text2);line-height:1.65;}
-
-.ibaff-funnel{background:linear-gradient(135deg,rgba(212,160,23,.05),rgba(14,165,233,.04));border:1px solid var(--border);border-radius:16px;padding:40px;}
-.ibaff-funnel-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,2.5vw,34px);letter-spacing:2px;color:#fff;margin-bottom:32px;text-align:center;}
-.ibaff-funnel-row{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding-bottom:4px;}
-.ibaff-fn{flex:1;min-width:140px;background:rgba(255,255,255,.04);border:1px solid var(--bord2);border-radius:12px;padding:22px 16px;text-align:center;transition:all .3s;}
-.ibaff-fn:hover{border-color:rgba(212,160,23,.3);background:rgba(212,160,23,.05);}
-.fn-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:2px;margin-bottom:10px;}
-.fn-ico{font-size:28px;margin-bottom:10px;}
-.fn-label{font-weight:700;font-size:13px;color:#fff;margin-bottom:6px;}
-.fn-sub{font-size:11px;color:var(--text2);line-height:1.5;}
-.ibaff-fn-arrow{display:flex;align-items:center;padding:0 8px;color:var(--gold);font-size:20px;flex-shrink:0;opacity:.6;}
-
-@media(max-width:960px){
-  .ibaff-split{grid-template-columns:1fr;gap:20px;}
-  .ibaff-divider{padding:4px 0;}
-  .ibaff-plus{font-size:36px;}
-  .ibaff-power{padding:28px 20px;}
-  .ibaff-power-grid{grid-template-columns:1fr 1fr;}
-  .ibaff-funnel{padding:28px 20px;}
-  .ibaff-funnel-row{flex-direction:column;gap:12px;}
-  .ibaff-fn-arrow{transform:rotate(90deg);justify-content:center;padding:0;}
-}
-@media(max-width:520px){
-  .ibaff-power-grid{grid-template-columns:1fr;}
-  .ibaff-col{padding:24px 20px;}
-}
-</style>
-
-<!-- LIVE MARKETS -->
-<section id="markets" class="sec">
-  <div class="stag">Markets We Trade</div>
-  <div class="sh" style="margin-bottom:36px;">Live <em>Market Data</em></div>
-  <div class="mkts-grid" id="mktsGrid"></div>
-</section>
-
-<!-- WHY PARTNER WITH IBPIPS -->
-<section id="why" class="sec">
-  <div class="stag">Why Choose IBPips</div>
-  <div class="sh" style="margin-bottom:40px;">Why Brokers <em>Partner With Us</em></div>
-  <div class="why-grid">
-    <div class="wc"><div class="wc-n" data-count="85">0</div><h4>K+ Traders Referred</h4><p>Over 85,000 active traders referred to our partner brokers across all regions.</p></div>
-    <div class="wc"><div class="wc-n" data-count="42">0</div><h4>Countries Active</h4><p>Ground-level IB teams in 42 countries — local language, local payment methods.</p></div>
-    <div class="wc"><div class="wc-n" data-count="12">0</div><h4>Years as IB</h4><p>Over a decade of experience as a professional introducing broker in forex markets.</p></div>
-    <div class="wc"><div class="wc-n" data-count="98">0</div><h4>% Broker Retention</h4><p>Brokers who partner with IBPips stay with us — we deliver consistently.</p></div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section id="testi" class="sec">
-  <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;flex-wrap:wrap;gap:16px;">
-    <div>
-      <div class="stag">What Brokers Say</div>
-      <div class="sh">Broker <em>Testimonials</em></div>
-    </div>
-    <div class="t-ctrl">
-      <button class="t-btn" onclick="moveTesti(-1)">←</button>
-      <div id="tDots" style="display:flex;gap:6px;align-items:center;"></div>
-      <button class="t-btn" onclick="moveTesti(1)">→</button>
-    </div>
-  </div>
-  <div class="testi-overflow">
-    <div class="testi-track" id="testiTrack">
-      <div class="tc"><div class="tc-stars">★★★★★</div><p class="tc-text">IBPips is one of our highest-performing IB partners globally. The volume they bring from MENA is consistent, high-quality, and the traders have excellent retention rates. Highly recommended partner IB.</p><div class="tc-auth"><div class="tc-av">AK</div><div><div class="tc-name">Ahmed Al-Khalidi</div><div class="tc-role">IB Manager, Exness · Dubai</div></div></div></div>
-      <div class="tc"><div class="tc-stars">★★★★★</div><p class="tc-text">We've partnered with many IBs over the years. IBPips stands out for transparency, volume consistency, and the quality of their sub-IB network. Their Africa reach is second to none.</p><div class="tc-auth"><div class="tc-av">SM</div><div><div class="tc-name">Sarah Mitchell</div><div class="tc-role">Partnership Director, XM Group</div></div></div></div>
-      <div class="tc"><div class="tc-stars">★★★★★</div><p class="tc-text">IBPips brought us over 400 funded accounts in their first 3 months. The onboarding was smooth, reporting is detailed, and their team is responsive. A true professional IB partner.</p><div class="tc-auth"><div class="tc-av">RJ</div><div><div class="tc-name">Raj Joshi</div><div class="tc-role">Head of Affiliates, FXTM</div></div></div></div>
-      <div class="tc"><div class="tc-stars">★★★★★</div><p class="tc-text">The sub-IB network IBPips manages is impressive. Volume flows consistently from their tier-2 and tier-3 IBs, and the trader quality — deposit size and activity — is well above industry average.</p><div class="tc-auth"><div class="tc-av">LC</div><div><div class="tc-name">Laura Chen</div><div class="tc-role">IB Relations, IC Markets</div></div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="sec">
-  <div class="stag">Get In Touch</div>
-  <div class="sh" style="margin-bottom:48px;">Partner With <em>IBPips</em></div>
-  <div class="contact-grid">
-    <div class="cl">
-      <h3>Ready to Receive<br><span>More Volume?</span></h3>
-      <p>If you are a regulated forex broker looking for a high-performing IB partner with proven volume, regional reach, and a managed sub-IB network — IBPips is ready to work with you. Contact our IB team today.</p>
-      <div class="cinfo">
-        <div class="ci">
-          <div class="ci-ico">✉️</div>
-          <div>
-            <div class="ci-lbl">Email</div>
-            <a href="mailto:IBPips.com@gmail.com">IBPips.com@gmail.com</a>
-          </div>
-        </div>
-        <div class="ci">
-          <div class="ci-ico">🏢</div>
-          <div>
-            <div class="ci-lbl">Company</div>
-            <span style="color:var(--text);">AWS Marketing</span>
-          </div>
-        </div>
-        <div class="ci">
-          <div class="ci-ico">🌐</div>
-          <div>
-            <div class="ci-lbl">Website</div>
-            <a href="https://ibpips.com">ibpips.com</a>
-          </div>
-        </div>
-        <div class="ci">
-          <div class="ci-ico">⏰</div>
-          <div>
-            <div class="ci-lbl">Response Time</div>
-            <span style="color:var(--text);">Within 24 hours</span>
-          </div>
-        </div>
-        <div class="ci">
-          <div class="ci-ico">🌍</div>
-          <div>
-            <div class="ci-lbl">Coverage</div>
-            <span style="color:var(--text);">MENA · Africa · Southeast Asia · Global</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="cform">
-      <h4>Broker Enquiry Form</h4>
-      <div class="form-col">
-        <div class="fld"><label>Your Name</label><input type="text" placeholder="Full name"></div>
-        <div class="fld"><label>Broker / Company Name</label><input type="text" placeholder="Your brokerage name"></div>
-        <div class="fld"><label>Email Address</label><input type="email" placeholder="your@broker.com"></div>
-        <div class="fld">
-          <label>I Am A</label>
-          <select>
-            <option value="">Select...</option>
-            <option>Forex Broker — Looking for an IB Partner</option>
-            <option>IB / Affiliate — Looking to Join IBPips Network</option>
-            <option>Sub-IB — Looking to Work Under IBPips</option>
-            <option>Other Enquiry</option>
-          </select>
-        </div>
-        <div class="fld"><label>Message</label><textarea placeholder="Tell us about your broker, target markets, and what you're looking for from an IB partner..."></textarea></div>
-        <button class="fsub" onclick="submitForm(this)">Send Enquiry →</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section id="cta">
-  <div class="cta-h">Let's Build <span>Volume Together</span></div>
-  <p class="cta-sub">IBPips is ready to become your highest-performing IB partner. Consistent volume, verified traders, 42 countries — powered by AWS Marketing.</p>
-  <div class="cta-row">
-    <a href="#contact" class="btn-g">Partner With IBPips</a>
-    <a href="mailto:IBPips.com@gmail.com" class="btn-o">Email Us Directly</a>
-  </div>
-</section>
-
-<!-- ETORO BOTTOM BANNER -->
-<div class="etoro-bottom-banner">
-  <a href="https://med.etoro.com/B21187_A128651_TClick.aspx" target="_blank" style="display:inline-block;max-width:680px;width:100%;">
-    <div class="etoro-bottom-inner">
-      <div class="etoro-e-icon">e</div>
-      <div class="etoro-bottom-text">
-        <strong>Join 30M+ Traders on eToro</strong>
-        <span>Trade Stocks · Crypto · Gold · Forex · ETFs — All in One App</span>
-      </div>
-      <div class="etoro-bottom-btn">Start Trading Free →</div>
-    </div>
-  </a>
-  <p class="etoro-risk">Your capital is at risk. CFDs are complex instruments. 76% of retail investor accounts lose money.</p>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="fgrid">
-    <div>
-      <span class="fbrand">IB<span class="pip">Pips</span>™</span>
-      <p class="fdesc">IBPips is a professional Introducing Broker operating under AWS Marketing. We are registered IBs with several of the world's top regulated forex brokers, bringing consistent volume from MENA, Africa, and Southeast Asia.</p>
-      <div class="fco">AWS Marketing · IB Services Division</div>
-    </div>
-    <div class="fcol">
-      <h5>IB Services</h5>
-      <ul>
-        <li><a href="#services">Trader Referrals</a></li>
-        <li><a href="#services">Sub-IB Network</a></li>
-        <li><a href="#services">Forex Marketing</a></li>
-        <li><a href="#services">Regional Coverage</a></li>
-        <li><a href="#services">Volume Reporting</a></li>
-      </ul>
-    </div>
-    <div class="fcol">
-      <h5>Broker Partners</h5>
-      <ul>
-        <li><a href="#brokers">eToro</a></li>
-        <li><a href="#brokers">XTB</a></li>
-        <li><a href="#brokers">FP Markets</a></li>
-        <li><a href="#brokers">AdroFx</a></li>
-        <li><a href="#brokers">Admiral Markets</a></li>
-      </ul>
-    </div>
-    <div class="fcol">
-      <h5>Company</h5>
-      <ul>
-        <li><a href="#about">About IBPips</a></li>
-        <li><a href="#why">Why Partner With Us</a></li>
-        <li><a href="mailto:IBPips.com@gmail.com">IBPips.com@gmail.com</a></li>
-        <li><a href="#contact">Contact Us</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="disc">
-    ⚠ Disclaimer: IBPips, operated by AWS Marketing, is a registered Introducing Broker with partner brokers. We do not operate as a forex broker, accept client funds, or provide financial advice. All trading carries significant risk. IBPips earns commission from broker partners based on referred client trading volume.
-  </div>
-  <div class="fbot">
-    <p>© 2025 IBPips™ by AWS Marketing. All rights reserved.</p>
-    <p style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(241,245,249,.12);">IBPips.com@gmail.com</p>
-  </div>
-</footer>
-
-<!-- WhatsApp -->
-<a href="https://wa.me/" class="wa" title="WhatsApp">💬</a>
-
-<script>
-/* MOBILE MENU */
-function toggleMenu(){document.getElementById('ham').classList.toggle('open');document.getElementById('mobMenu').classList.toggle('open');}
-function closeMenu(){document.getElementById('ham').classList.remove('open');document.getElementById('mobMenu').classList.remove('open');}
-
-/* NAV SCROLL */
-window.addEventListener('scroll',()=>{document.getElementById('nav').style.background=scrollY>50?'rgba(6,11,20,.98)':'rgba(6,11,20,.92)';});
-
-/* TICKER */
-(function(){
-  const p=[
-    {s:'EUR/USD',v:'1.08542',c:'+0.043%',u:1},{s:'GBP/USD',v:'1.27831',c:'-0.021%',u:0},
-    {s:'USD/JPY',v:'149.623',c:'+0.187%',u:1},{s:'XAU/USD',v:'2,318.40',c:'+0.512%',u:1},
-    {s:'BTC/USD',v:'67,240',c:'+1.24%',u:1},{s:'ETH/USD',v:'3,512',c:'+0.98%',u:1},
-    {s:'AUD/USD',v:'0.65872',c:'+0.091%',u:1},{s:'WTI',v:'78.42',c:'-0.33%',u:0},
-    {s:'EUR/GBP',v:'0.84923',c:'+0.027%',u:1},{s:'USD/CAD',v:'1.36540',c:'-0.015%',u:0},
-  ];
-  const el=document.getElementById('tickerEl');let h='';
-  [...p,...p].forEach(({s,v,c,u})=>{h+=`<div class="ti"><span class="ti-p">${s}</span><span class="ti-v">${v}</span><span class="${u?'ti-u':'ti-d'}">${c}</span></div>`;});
-  el.innerHTML=h;
-})();
-
-/* CANDLE ENGINE */
-function mkC(base,n){n=n||70;const r=[];let p=base;for(let i=0;i<n;i++){const o=p,ch=(Math.random()-.47)*(base*.003),c=o+ch,h=Math.max(o,c)+Math.random()*(base*.001),l=Math.min(o,c)-Math.random()*(base*.001);r.push({o,c,h,l});p=c;}return r;}
-
-function drawC(cv,candles,opts){
-  if(!cv)return;opts=opts||{};
-  const ctx=cv.getContext('2d'),dpr=devicePixelRatio||1;
-  const W=cv.offsetWidth||400,H=cv.offsetHeight||200;
-  cv.width=W*dpr;cv.height=H*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,W,H);
-  const vis=candles.slice(-55),pr=vis.flatMap(c=>[c.h,c.l]);
-  const mn=Math.min(...pr),mx=Math.max(...pr),rng=mx-mn||.001;
-  const pad=opts.pad||8,toY=p=>pad+(H-2*pad)*(mx-p)/rng;
-  const cw=(W-20)/vis.length,bw=cw*.58;
-  ctx.strokeStyle=opts.grid||'rgba(255,255,255,0.07)';ctx.lineWidth=1;ctx.setLineDash([2,6]);
-  for(let i=0;i<=4;i++){const y=pad+((H-2*pad)/4)*i;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
-  ctx.setLineDash([]);
-  vis.forEach((c,i)=>{
-    const bull=c.c>=c.o,col=bull?'#22C55E':'#EF4444',x=10+i*cw+cw/2;
-    ctx.shadowColor=bull?'rgba(34,197,94,.3)':'rgba(239,68,68,.3)';ctx.shadowBlur=8;
-    ctx.strokeStyle=col;ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(x,toY(c.h));ctx.lineTo(x,toY(c.l));ctx.stroke();
-    ctx.fillStyle=col;const y1=toY(Math.max(c.o,c.c)),bh=Math.max(toY(Math.min(c.o,c.c))-y1,2);
-    ctx.fillRect(x-bw/2,y1,bw,bh);ctx.shadowBlur=0;
-  });
-  if(vis.length>20){
-    ctx.strokeStyle='rgba(14,165,233,.55)';ctx.lineWidth=1.5;ctx.setLineDash([4,5]);ctx.beginPath();
-    for(let i=20;i<vis.length;i++){const avg=vis.slice(i-20,i).reduce((a,b)=>a+b.c,0)/20,x=10+i*cw+cw/2;i===20?ctx.moveTo(x,toY(avg)):ctx.lineTo(x,toY(avg));}
-    ctx.stroke();ctx.setLineDash([]);
-  }
-}
-
-/* BG CANVAS */
-(function(){
-  const cv=document.getElementById('bgCanvas');if(!cv)return;
-  const ctx=cv.getContext('2d');let t=0;
-  function resize(){cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;}
-  resize();window.addEventListener('resize',resize);
-  function draw(){
-    ctx.clearRect(0,0,cv.width,cv.height);
-    [[.2,.5,'rgba(212,160,23,.15)'],[.8,.3,'rgba(14,165,233,.1)'],[.5,.75,'rgba(212,160,23,.07)']].forEach(([bx,by,col],i)=>{
-      const gx=cv.width*(bx+Math.sin(t*.35+i)*.1),gy=cv.height*(by+Math.cos(t*.28+i)*.12);
-      const g=ctx.createRadialGradient(gx,gy,0,gx,gy,cv.width*.35);
-      g.addColorStop(0,col);g.addColorStop(1,'transparent');
-      ctx.fillStyle=g;ctx.fillRect(0,0,cv.width,cv.height);
-    });
-    t+=.007;requestAnimationFrame(draw);
-  }draw();
-})();
-
-/* HERO CANDLE */
-(function(){
-  const cv=document.getElementById('candleHero');if(!cv)return;
-  const cands=mkC(1.085,80);let f=0;
-  function resize(){cv.width=cv.offsetWidth*devicePixelRatio;cv.height=cv.offsetHeight*devicePixelRatio;}
-  resize();window.addEventListener('resize',resize);
-  function loop(){
-    drawC(cv,cands,{grid:'rgba(212,160,23,.06)',glow:10});
-    if(f++%90===0){const l=cands[cands.length-1],o=l.c,ch=(Math.random()-.47)*.003,c=o+ch;cands.push({o,c,h:Math.max(o,c)+Math.random()*.001,l:Math.min(o,c)-Math.random()*.001});if(cands.length>150)cands.shift();}
-    requestAnimationFrame(loop);
-  }loop();
-})();
-
-/* VIDEO CANVAS */
-(function(){
-  const cv=document.getElementById('videoCanvas');if(!cv)return;
-  const cands=mkC(1.285,80);let f=0;
-  function resize(){cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;}
-  setTimeout(resize,100);window.addEventListener('resize',resize);
-  function loop(){
-    drawC(cv,cands,{pad:16,grid:'rgba(212,160,23,.08)',glow:12});
-    if(f++%60===0){const l=cands[cands.length-1],o=l.c,ch=(Math.random()-.47)*.004,c=o+ch;cands.push({o,c,h:Math.max(o,c)+Math.random()*.0012,l:Math.min(o,c)-Math.random()*.0012});if(cands.length>150)cands.shift();}
-    requestAnimationFrame(loop);
-  }loop();
-})();
-
-/* MARKETS */
-(function(){
-  const mkts=[
-    {pair:'EUR/USD',price:1.08542,chg:'+0.043%',up:true,base:1.085},
-    {pair:'GBP/USD',price:1.27831,chg:'-0.021%',up:false,base:1.278},
-    {pair:'XAU/USD',price:2318.40,chg:'+0.512%',up:true,base:2318},
-    {pair:'BTC/USD',price:67240,chg:'+1.24%',up:true,base:67240},
-    {pair:'USD/JPY',price:149.623,chg:'+0.187%',up:true,base:149.6},
-    {pair:'WTI OIL',price:78.42,chg:'-0.33%',up:false,base:78.4},
-    {pair:'ETH/USD',price:3512,chg:'+0.98%',up:true,base:3512},
-    {pair:'EUR/GBP',price:0.84923,chg:'+0.027%',up:true,base:.849},
-  ];
-  const grid=document.getElementById('mktsGrid');if(!grid)return;
-  const cMap={};
-  mkts.forEach((m,i)=>{
-    const id='sp'+i;cMap[id]=mkC(m.base,40);
-    const prStr=m.price>999?m.price.toLocaleString():m.price.toFixed(m.price<10?5:3);
-    const d=document.createElement('div');d.className='mkt';
-    d.innerHTML=`<div class="mkt-top"><div class="mkt-pair">${m.pair}</div><span class="mkt-chg ${m.up?'u':'d'}">${m.chg}</span></div><div class="mkt-price ${m.up?'u':'d'}" id="mp${i}">${prStr}</div><canvas class="sp" id="${id}"></canvas>`;
-    grid.appendChild(d);
-  });
-  setTimeout(()=>{
-    mkts.forEach((_,i)=>{const cv=document.getElementById('sp'+i);if(cv)drawC(cv,cMap['sp'+i],{pad:4,glow:4});});
-    setInterval(()=>{
-      mkts.forEach((m,i)=>{
-        const el=document.getElementById('mp'+i);if(!el)return;
-        const d=(Math.random()-.5)*.002;m.price+=d;
-        el.textContent=m.price>999?m.price.toLocaleString():m.price.toFixed(m.price<10?5:3);
-        el.className='mkt-price '+(d>0?'u':'d');setTimeout(()=>el.className='mkt-price '+(m.up?'u':'d'),600);
-      });
-    },3200);
-  },300);
-})();
-
-/* TESTIMONIALS */
-let ti=0;
-function tpv(){return window.innerWidth<700?1:2;}
-function buildDots(){
-  const track=document.getElementById('testiTrack');if(!track)return;
-  const cards=track.querySelectorAll('.tc').length,total=Math.max(1,cards-tpv()+1);
-  const dots=document.getElementById('tDots');if(!dots)return;
-  dots.innerHTML='';
-  for(let i=0;i<total;i++){const d=document.createElement('button');d.className='t-dot'+(i===0?' on':'');d.onclick=(()=>{const idx=i;return()=>goT(idx);})();dots.appendChild(d);}
-}
-function goT(i){
-  const track=document.getElementById('testiTrack');if(!track)return;
-  const card=track.querySelector('.tc');if(!card)return;
-  ti=i;track.style.transform=`translateX(-${ti*(card.offsetWidth+20)}px)`;
-  document.querySelectorAll('#tDots .t-dot').forEach((d,j)=>d.classList.toggle('on',j===i));
-}
-function moveTesti(dir){const track=document.getElementById('testiTrack');if(!track)return;const cards=track.querySelectorAll('.tc').length;ti=Math.max(0,Math.min(ti+dir,cards-tpv()));goT(ti);}
-window.addEventListener('load',()=>{buildDots();setInterval(()=>moveTesti(1),5500);});
-window.addEventListener('resize',()=>{ti=0;buildDots();goT(0);});
-
-/* COUNT UP */
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(!e.isIntersecting)return;
-    const el=e.target,target=parseInt(el.dataset.count);let cur=0;const inc=target/50;
-    const t=setInterval(()=>{cur+=inc;if(cur>=target){cur=target;clearInterval(t);}el.textContent=Math.floor(cur).toLocaleString();},20);
-    obs.unobserve(el);
-  });
-},{threshold:.5});
-document.querySelectorAll('[data-count]').forEach(el=>obs.observe(el));
-
-/* FORM */
-function submitForm(btn){
-  btn.textContent='Sending...';btn.disabled=true;
-  setTimeout(()=>{btn.textContent='✓ Enquiry Sent!';btn.style.background='#22C55E';
-  setTimeout(()=>{btn.textContent='Send Enquiry →';btn.disabled=false;btn.style.background='';},3000);},1200);
-}
-</script>
-</body>
-</html>
+IB
+Pips
+™
+AWS Marketing
+
+
+
+
+
+
+
+
+
+CERTIFIED INTRODUCING BROKER
+Your IB Partner
+Delivering Volume.
+IBPips is an established Introducing Broker bringing thousands of active forex traders to the world's top regulated brokers. We generate consistent volume, manage IB networks, and grow your client base across MENA, Africa, and Southeast Asia.
+AWS MARKETING — IB SERVICES DIVISION
+View Our Broker Partners
+Partner With IBPips
+0
+ACTIVE TRADERS REFERRED
+0
+IB CAMPAIGNS MANAGED
+0
+COUNTRIES WE OPERATE IN
+0
+YEARS AS ACTIVE IB
+WHO WE ARE
+We Are The Introducing Broker
+IBPips is not a marketing agency for brokers — we ARE the IB. We are a professional Introducing Broker that brings volume, verified traders, and a managed sub-IB network directly to our partner brokers.
+A Trusted IB Partner for Top Brokers
+Operating under AWS Marketing, IBPips has spent over a decade building one of the most active IB networks in MENA, Africa, and Southeast Asia. We refer high-quality, verified traders to our partner brokers — consistently and at scale.
+Brokers who partner with IBPips gain access to our entire network of sub-IBs, traders, and marketing infrastructure — without the overhead of managing it themselves.
+	•	✅We refer real, verified traders — no click farms, no low-quality leads 🌍Active in 42 countries with native-language IB teams on the ground 🔗We manage a 3-tier sub-IB network that compounds volume for your broker 📊Full transparency reporting — volume, FTDs, lots traded, and active accounts ⚡Fast onboarding — we can be live with your broker in under 48 hours
+IBPIPS — IB PROFILE
+IBPips™
+Professional Introducing Broker · AWS Marketing
+0
+K+ Referred Traders
+0
+Years Active as IB
+0
+Countries Covered
+0
+Sub-IB Tiers Managed
+MENA Markets
+Africa Focus
+Southeast Asia
+Arabic Content
+Sub-IB Network
+Forex Marketing
+
+
+Live Candlestick Feed
+WHY WE DELIVER
+We Know Forex
+IBPips isn't just an IB on paper. Our team lives and breathes forex. We understand what traders want, how they think, and how to refer the right traders to the right brokers — maximizing volume and LTV for our broker partners.
+	•	📈Our traders are pre-qualified — we only refer clients likely to be active, depositing traders. 🤝We maintain ongoing engagement with our trader base, reducing churn for your brokerage. 🌍Regional IB teams in 42 countries handle local language, payment, and support needs. 📊Monthly volume reports, FTD counts, and active account breakdowns sent to every broker partner.
+Partner With IBPips
+IB SERVICES
+What We Bring To Your Broker
+As your Introducing Broker, here is everything IBPips delivers to broker partners who work with us.
+01
+👥
+Trader Referrals
+We refer active, deposit-ready traders from our network across MENA, Africa, and Southeast Asia. All leads are pre-qualified and tracked via your broker's IB portal in real time.
+02
+🔗
+Sub-IB Network
+We manage a 3-tier sub-IB structure with hundreds of active sub-IBs under us. All volume from our sub-IB network flows through our master IB account with your broker.
+03
+📢
+Forex Marketing
+We run our own paid campaigns across Google, Meta, TikTok, and native networks — bringing new FTDs to your broker under our IB code at no cost to you.
+04
+🌍
+Regional Coverage
+Native-language teams and IB managers operating in Arabic, Swahili, Bahasa, and French — covering MENA, East Africa, West Africa, and Southeast Asia markets.
+05
+📊
+Volume Reporting
+Monthly transparency reports showing FTDs, active accounts, lots traded, and geographic breakdown — so your broker always knows exactly what IBPips is delivering.
+06
+🚀
+Fast Onboarding
+We can be live under your broker's IB program within 48 hours. Our onboarding process is smooth, compliant, and designed to get volume flowing as fast as possible.
+
+Libertex
+🏆 Award-Winning Broker · 25+ Years
+Trade Forex, Stocks & Crypto
+0% Commission · Welcome Bonus Available
+Forex
+Stocks
+Crypto
+Commodities
+ETFs
+Start Trading Now
+
+Capital at risk. T&Cs apply.
+
+GTCfx
+🌐 Global Trading · Trusted Broker
+Trade with GTCfx Today
+Competitive Spreads · Fast Execution · Multi-Asset Trading
+Forex
+Indices
+Commodities
+Crypto
+Stocks
+Start Trading Now
+
+Capital at risk. T&Cs apply.
+OUR BROKER PARTNERS
+Brokers We Work With
+IBPips is an active Introducing Broker with several of the world's leading regulated forex and CFD brokers. We generate consistent volume and maintain strong relationships with each partner.
+eToro
+eTORO
+Social Trading Platform
+
+OUR TRUSTED BROKER
+REGULATED · FCA · ASIC · CYSEC · FINCEN
+eToro is the world's leading social trading platform with over 30 million registered users. Offering stocks, crypto, forex, ETFs, and commodities all in one place — eToro's copy trading feature makes it uniquely attractive to new traders across MENA and Africa.
+30M+ Users
+Copy Trading
+Stocks · Crypto · Forex
+$0 Commission Stocks
+Social Feed
+Open eToro Account →
+XTB
+XTB
+Award-Winning CFD Broker
+
+OUR TRUSTED BROKER
+REGULATED · FCA · KNF · CYSEC · IFSC
+XTB is a globally recognised, award-winning CFD and forex broker listed on the Warsaw Stock Exchange. With their proprietary xStation 5 platform, ultra-competitive spreads, and a broad range of 5,800+ instruments, XTB is a top choice for serious traders worldwide.
+5,800+ Instruments
+xStation 5
+Stock CFDs
+0% Commission Stocks
+Listed Company
+Open XTB Account →
+FP Markets
+FP MARKETS
+ECN Forex & CFD Broker
+
+OUR TRUSTED BROKER
+REGULATED · ASIC · CYSEC · FSA
+FP Markets is an award-winning Australian ECN broker offering ultra-tight spreads from 0.0 pips with fast execution. With MT4/MT5 and cTrader support, a broad range of 10,000+ instruments, and a competitive IB program, FP Markets is a top pick for active traders across MENA and Asia.
+10,000+ Instruments
+ECN Spreads from 0.0
+MT4 / MT5 / cTrader
+ASIC Regulated
+Islamic Accounts
+Open FP Markets Account →
+AdroFx
+ADROFX
+Forex & CFD Specialist
+
+OUR TRUSTED BROKER
+REGULATED · SVGFSA · GLOBAL REACH
+AdroFx is a fast-growing multi-asset broker specialising in forex and CFD trading with a strong presence in MENA, Africa, and CIS markets. Known for its generous IB program, competitive spreads, and support for MT4/MT5, AdroFx is a preferred broker for active sub-IB networks.
+MT4 / MT5
+High IB Commission
+MENA Friendly
+Crypto Deposits
+Islamic Accounts
+Open AdroFx Account →
+ADMIRALS
+ADMIRAL MARKETS
+Admirals · Global Broker
+
+OUR TRUSTED BROKER
+REGULATED · FCA · ASIC · CYSEC · EFSA · JSC
+Admiral Markets (now Admirals) is an award-winning broker with over 20 years of experience. Regulated across multiple top-tier jurisdictions, Admirals offers exceptional trading conditions on MT4/MT5, a wide instrument range, and one of the most reputable IB programs in the industry.
+20+ Years
+MT4 / MT5
+8,000+ Instruments
+Top-Tier Regulated
+Strong IB Program
+Open Admirals Account →
+Libertex
+LIBERTEX
+CFD & Forex Trading Platform
+
+OUR TRUSTED BROKER
+LICENSED GLOBAL BROKER · 25+ YEARS EXPERIENCE
+Libertex is an award-winning online trading platform with over 25 years of market experience. Offering 0% commission trading on Forex, stocks, crypto, and commodities, Libertex is trusted by millions of traders worldwide — and features an exclusive Welcome Bonus for new sign-ups.
+0% Commission
+Welcome Bonus
+Forex · Stocks · Crypto
+25+ Years Experience
+25+ Years Experience
+Sign Up to Libertex →
+Enquire About IB Partnership
+HOW IT WORKS
+How We Refer Volume To You
+01
+🤝
+IB Agreement
+We sign an IB agreement with your broker and receive our unique IB code and tracking link.
+02
+📢
+We Market You
+We promote your broker across our network, campaigns, social media, and sub-IB channels.
+03
+👥
+Traders Register
+Traders sign up under our IB link, complete KYC, and make their first deposit with your broker.
+04
+📈
+Volume Flows
+Our traders trade actively. Your broker earns spread revenue. We earn commission per lot.
+05
+🔄
+We Scale
+We continuously grow our trader base and sub-IB network, compounding volume for your broker.
+
+
+IB + AFFILIATE
+IB with Affiliate Marketing
+IBPips combines the power of traditional Introducing Brokerage with performance-based affiliate marketing — creating a dual-engine model that maximises trader acquisition and commissions across every channel.
+🤝
+TRADITIONAL MODEL
+Introducing Broker (IB)
+An IB acts as a bridge between traders and brokers. IBPips signs an IB agreement, receives a unique IB code, and earns a commission per lot traded by every client referred — for the lifetime of that client.
+	•	📋 Formal IB agreement with the broker 🔁 Recurring commission per lot traded 👤 Lifetime client ownership under IB code 📊 Access to IB portal & live volume tracking 🏗️ Sub-IB structure compounds your earnings
+EARNING MODEL
+Per-Lot Commission
+Paid monthly · Scales with volume
++
+📣
+PERFORMANCE MODEL
+Affiliate Marketing
+Affiliate marketing pays a fixed bounty or revenue share for every qualified trader sign-up (FTD). IBPips runs paid campaigns on Google, Meta, TikTok, and native networks — driving high-quality first-time depositors to partner brokers.
+	•	💰 CPA (Cost Per Acquisition) per FTD 📢 Paid ads across Google, Meta & TikTok 🌍 Geo-targeted campaigns in 42+ countries 🔗 Unique tracking links per campaign & region 📈 Revenue share + CPA hybrid deals available
+EARNING MODEL
+CPA + Rev Share
+Per FTD · Hybrid deals available
+THE IBPIPS ADVANTAGE
+Why We Combine Both Models
+⚡
+Dual Revenue Streams
+Earn recurring lot-based IB commissions AND one-time CPA payouts simultaneously — maximising revenue from every single trader referred.
+🎯
+Targeted Acquisition
+Affiliate campaigns attract brand-new traders while IB networks retain and activate existing ones — covering the full trader lifecycle.
+🔗
+Sub-IB + Affiliate Stack
+Our sub-IBs and affiliates operate under the same master IB code — all volume consolidates upward, multiplying your broker's exposure to IBPips.
+🌍
+Regional Depth
+Native-language IB managers and region-specific ad campaigns mean we penetrate markets that traditional global campaigns simply cannot reach.
+📊
+Full Transparency
+Every click, FTD, and lot is tracked and reported. Brokers receive monthly performance breakdowns across IB and affiliate channels separately.
+🚀
+Scalable at Any Size
+Whether you want 100 or 10,000 new traders — our combined IB + affiliate infrastructure scales on demand without compromising quality.
+How the Combined Model Works
+01
+📢
+Traffic & Campaigns
+Google · Meta · TikTok · Native · WhatsApp Groups
+→
+02
+👥
+Lead Capture
+Landing pages · CRM · Sub-IB funnels · Direct referrals
+→
+03
+✅
+FTD + KYC
+First deposit made · KYC completed under IB code
+→
+04
+💸
+Dual Payout
+CPA affiliate bounty + ongoing per-lot IB commission
+→
+05
+📈
+Compounding Growth
+Sub-IBs & affiliates expand the network automatically
+Become an IB Partner Join Our Affiliate Program
+MARKETS WE TRADE
+Live Market Data
+WHY CHOOSE IBPIPS
+Why Brokers Partner With Us
+0
+K+ Traders Referred
+Over 85,000 active traders referred to our partner brokers across all regions.
+0
+Countries Active
+Ground-level IB teams in 42 countries — local language, local payment methods.
+0
+Years as IB
+Over a decade of experience as a professional introducing broker in forex markets.
+0
+% Broker Retention
+Brokers who partner with IBPips stay with us — we deliver consistently.
+WHAT BROKERS SAY
+Broker Testimonials
+← →
+★★★★★
+IBPips is one of our highest-performing IB partners globally. The volume they bring from MENA is consistent, high-quality, and the traders have excellent retention rates. Highly recommended partner IB.
+AK
+Ahmed Al-Khalidi
+IB Manager, Exness · Dubai
+★★★★★
+We've partnered with many IBs over the years. IBPips stands out for transparency, volume consistency, and the quality of their sub-IB network. Their Africa reach is second to none.
+SM
+Sarah Mitchell
+Partnership Director, XM Group
+★★★★★
+IBPips brought us over 400 funded accounts in their first 3 months. The onboarding was smooth, reporting is detailed, and their team is responsive. A true professional IB partner.
+RJ
+Raj Joshi
+Head of Affiliates, FXTM
+★★★★★
+The sub-IB network IBPips manages is impressive. Volume flows consistently from their tier-2 and tier-3 IBs, and the trader quality — deposit size and activity — is well above industry average.
+LC
+Laura Chen
+IB Relations, IC Markets
+GET IN TOUCH
+Partner With IBPips
+Ready to Receive More Volume?
+If you are a regulated forex broker looking for a high-performing IB partner with proven volume, regional reach, and a managed sub-IB network — IBPips is ready to work with you. Contact our IB team today.
+✉️
+EMAIL
+IBPips.com@gmail.com
+🏢
+COMPANY
+AWS Marketing
+🌐
+WEBSITE
+ibpips.com
+⏰
+RESPONSE TIME
+Within 24 hours
+🌍
+COVERAGE
+MENA · Africa · Southeast Asia · Global
+Broker Enquiry Form
+YOUR NAME
+
+BROKER / COMPANY NAME
+
+EMAIL ADDRESS
+
+I AM A
+            Select...
+            Forex Broker — Looking for an IB Partner
+            IB / Affiliate — Looking to Join IBPips Network
+            Sub-IB — Looking to Work Under IBPips
+            Other Enquiry
+          
+MESSAGE
+Send Enquiry →
+Let's Build Volume Together
+IBPips is ready to become your highest-performing IB partner. Consistent volume, verified traders, 42 countries — powered by AWS Marketing.
+Partner With IBPips
+Email Us Directly
+e
+Join 30M+ Traders on eToro
+Trade Stocks · Crypto · Gold · Forex · ETFs — All in One App
+Start Trading Free →
+Your capital is at risk. CFDs are complex instruments. 76% of retail investor accounts lose money.
+IBPips™
+IBPips is a professional Introducing Broker operating under AWS Marketing. We are registered IBs with several of the world's top regulated forex brokers, bringing consistent volume from MENA, Africa, and Southeast Asia.
+AWS MARKETING · IB SERVICES DIVISION
+IB SERVICES
+	•	Trader Referrals
+	•	Sub-IB Network
+	•	Forex Marketing
+	•	Regional Coverage
+	•	Volume Reporting
+BROKER PARTNERS
+	•	eToro
+	•	XTB
+	•	FP Markets
+	•	AdroFx
+	•	Admiral Markets
+COMPANY
+	•	About IBPips
+	•	Why Partner With Us
+	•	IBPips.com@gmail.com
+	•	Contact Us
+	•	Privacy Policy
+⚠ Disclaimer: IBPips, operated by AWS Marketing, is a registered Introducing Broker with partner brokers. We do not operate as a forex broker, accept client funds, or provide financial advice. All trading carries significant risk. IBPips earns commission from broker partners based on referred client trading volume.
+© 2025 IBPips™ by AWS Marketing. All rights reserved.
+IBPips.com@gmail.com
+💬
