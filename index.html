@@ -273,6 +273,16 @@ a{text-decoration:none;color:inherit;}
 /* Libertex orange accent */
 .bcn.libertex::before{background:linear-gradient(90deg,#ff6b00,#ffaa00);}
 .bcn.libertex:hover{border-color:rgba(255,107,0,.3);}
+/* AxiTrader red accent */
+.bcn.axitrader::before{background:linear-gradient(90deg,#e30613,#ff4d57);}
+.bcn.axitrader:hover{border-color:rgba(227,6,19,.3);}
+.bcn.axitrader .bcn-signup{background:linear-gradient(135deg,#e30613,#ff4d57);color:#fff;}
+.bcn.axitrader .bcn-signup:hover{box-shadow:0 6px 22px rgba(227,6,19,.4);transform:translateY(-1px);}
+/* IronFX dark-red accent */
+.bcn.ironfx::before{background:linear-gradient(90deg,#8b0000,#cc2200);}
+.bcn.ironfx:hover{border-color:rgba(139,0,0,.3);}
+.bcn.ironfx .bcn-signup{background:linear-gradient(135deg,#8b0000,#cc2200);color:#fff;}
+.bcn.ironfx .bcn-signup:hover{box-shadow:0 6px 22px rgba(139,0,0,.4);transform:translateY(-1px);}
 
 .bcn-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;}
 .bcn-logo-wrap{display:flex;align-items:center;gap:12px;}
@@ -310,6 +320,7 @@ a{text-decoration:none;color:inherit;}
 .admiral .bcn-signup:hover{box-shadow:0 6px 22px rgba(0,115,168,.4);transform:translateY(-1px);}
 .libertex .bcn-signup{background:linear-gradient(135deg,#ff6b00,#ffaa00);color:#fff;}
 .libertex .bcn-signup:hover{box-shadow:0 6px 22px rgba(255,107,0,.4);transform:translateY(-1px);}
+/* AxiTrader & IronFX signup styles already in broker accent block above */
 
 /* Status dot */
 .bcn-status{width:7px;height:7px;border-radius:50%;background:var(--green);animation:glow3 1.5s ease-in-out infinite;flex-shrink:0;margin-top:3px;}
@@ -514,6 +525,66 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
 
 @media(max-width:960px){.fp-sticky{display:none;}}
 
+/* ══ IRONFX STICKY LEFT BANNER ══ */
+.ironfx-sticky{
+  position:fixed;top:180px;left:0;z-index:997;
+  display:flex;flex-direction:column;align-items:flex-start;
+  transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+.ironfx-sticky:hover .ironfx-sticky-panel{transform:translateX(0);}
+.ironfx-sticky-panel{
+  transform:translateX(calc(-100% + 44px));
+  transition:transform .4s cubic-bezier(.4,0,.2,1);
+  display:flex;align-items:stretch;flex-direction:row-reverse;
+  border-radius:0 12px 12px 0;
+  overflow:hidden;
+  box-shadow:4px 4px 30px rgba(0,0,0,.5),0 0 0 1px rgba(139,0,0,.3);
+}
+.ironfx-sticky-tab{
+  width:44px;flex-shrink:0;
+  background:linear-gradient(180deg,#8b0000,#cc2200);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  cursor:pointer;padding:14px 0;
+}
+.ironfx-sticky-tab svg{width:18px;height:18px;fill:#fff;opacity:.9;}
+.ironfx-sticky-tab-label{
+  writing-mode:vertical-rl;text-orientation:mixed;
+  font-size:9px;font-weight:800;color:#fff;letter-spacing:2px;
+  text-transform:uppercase;font-family:'Plus Jakarta Sans',sans-serif;
+  white-space:nowrap;
+}
+.ironfx-sticky-body{
+  background:linear-gradient(135deg,#1a0000 0%,#0f0808 100%);
+  border-right:2px solid #cc2200;
+  padding:18px 18px 14px;
+  width:210px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.ironfx-sticky-logo{display:flex;align-items:center;gap:8px;margin-bottom:2px;}
+.ironfx-sticky-logo-box{
+  background:#fff;border-radius:6px;padding:4px 10px;height:28px;
+  display:flex;align-items:center;
+}
+.ironfx-sticky-logo-box span{font-size:11px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;white-space:nowrap;}
+.ironfx-sticky-name{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:#fff;}
+.ironfx-sticky-reg{font-family:'DM Mono',monospace;font-size:8px;color:#cc2200;letter-spacing:1.5px;text-transform:uppercase;}
+.ironfx-sticky-headline{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:#fff;line-height:1.1;}
+.ironfx-sticky-chips{display:flex;flex-wrap:wrap;gap:4px;}
+.ironfx-sticky-chip{font-size:8px;padding:2px 7px;border-radius:3px;background:rgba(139,0,0,.2);border:1px solid rgba(204,34,0,.3);color:#ff6666;font-weight:700;letter-spacing:.3px;}
+.ironfx-sticky-btn{
+  display:block;text-align:center;
+  background:linear-gradient(135deg,#8b0000,#cc2200);
+  color:#fff;font-weight:800;font-size:11px;
+  padding:10px 14px;border-radius:6px;letter-spacing:.3px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  transition:all .3s;white-space:nowrap;
+  border:none;cursor:pointer;
+}
+.ironfx-sticky-btn:hover{box-shadow:0 4px 18px rgba(139,0,0,.5);transform:translateY(-1px);}
+.ironfx-sticky-disc{font-size:7px;color:rgba(241,245,249,.2);font-family:'DM Mono',monospace;text-align:center;letter-spacing:.5px;}
+
+@media(max-width:960px){.ironfx-sticky{display:none;}}
+
 /* ══ RESPONSIVE ══ */
 @media(max-width:960px){
   #nav{padding:0 4%;}
@@ -555,6 +626,36 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
 </style>
 </head>
 <body>
+
+<!-- IRONFX STICKY LEFT BANNER -->
+<div class="ironfx-sticky">
+  <div class="ironfx-sticky-panel">
+    <div class="ironfx-sticky-tab">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-8v4h4l-5 8z"/></svg>
+      <span class="ironfx-sticky-tab-label">IronFX</span>
+    </div>
+    <div class="ironfx-sticky-body">
+      <div class="ironfx-sticky-logo">
+        <div class="ironfx-sticky-logo-box">
+          <span><span style="color:#8b0000;">Iron</span><span style="color:#333;font-weight:600;">FX</span></span>
+        </div>
+        <div class="ironfx-sticky-name">IRONFX</div>
+      </div>
+      <div class="ironfx-sticky-reg">FCA · CySEC · FSCA Regulated</div>
+      <div class="ironfx-sticky-headline">500+ Instruments<br>14+ Years</div>
+      <div class="ironfx-sticky-chips">
+        <span class="ironfx-sticky-chip">Forex & CFDs</span>
+        <span class="ironfx-sticky-chip">MT4</span>
+        <span class="ironfx-sticky-chip">Arabic Support</span>
+        <span class="ironfx-sticky-chip">Islamic Accounts</span>
+      </div>
+      <a href="https://go.ironfx.com/visit/?bta=58873&nci=7301" target="_blank" class="ironfx-sticky-btn">
+        Open IronFX Account →
+      </a>
+      <div class="ironfx-sticky-disc">Capital at risk. T&Cs apply.</div>
+    </div>
+  </div>
+</div>
 
 <!-- FP MARKETS STICKY RIGHT BANNER -->
 <div class="fp-sticky">
@@ -646,7 +747,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
 
   <div class="hero-stats">
     <div class="hs"><div class="hs-n" data-count="85000">0</div><div class="hs-l">Traders Joined Through Us</div></div>
-    <div class="hs"><div class="hs-n" data-count="8">0</div><div class="hs-l">Top Brokers Compared</div></div>
+    <div class="hs"><div class="hs-n" data-count="10">0</div><div class="hs-l">Top Brokers Compared</div></div>
     <div class="hs"><div class="hs-n" data-count="42">0</div><div class="hs-l">Countries Supported</div></div>
     <div class="hs"><div class="hs-n" data-count="12">0</div><div class="hs-l">Years In The Markets</div></div>
   </div>
@@ -1156,6 +1257,64 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
       </div>
       <a href="https://admiralmarkets.com/" target="_blank" class="bcn-signup">
         Open Admirals Account →
+      </a>
+    </div>
+
+    <!-- AxiTrader -->
+    <div class="bcn axitrader">
+      <div class="bcn-header">
+        <div class="bcn-logo-wrap">
+          <div class="bcn-logo-icon"><span class="bcn-logo-text" style="color:#e30613;font-size:16px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;">Axi<span style="color:#111;">Trader</span></span></div>
+          <div>
+            <div class="bcn-name">AXITRADER</div>
+            <div class="bcn-tagline">Global Forex & CFD Broker</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div class="bcn-status"></div>
+          <span class="bcn-badge">RECOMMENDED BROKER</span>
+        </div>
+      </div>
+      <div class="bcn-reg">Regulated · ASIC · FCA · DFSA · FSA</div>
+      <p class="bcn-desc">AxiTrader is a globally regulated forex and CFD broker trusted by traders in 100+ countries. Known for razor-thin spreads starting from 0.0 pips, lightning-fast execution, and full MT4 support, Axi is an excellent choice for both new and professional traders across MENA and beyond.</p>
+      <div class="bcn-chips">
+        <span class="bcn-chip">0.0 Pip Spreads</span>
+        <span class="bcn-chip">MT4 / MT5</span>
+        <span class="bcn-chip">ASIC · FCA Regulated</span>
+        <span class="bcn-chip">100+ Countries</span>
+        <span class="bcn-chip">Islamic Accounts</span>
+      </div>
+      <a href="https://records.axiaffiliates.com/visit/?bta=42814&brand=axitrader" target="_blank" class="bcn-signup">
+        Open AxiTrader Account →
+      </a>
+    </div>
+
+    <!-- IronFX -->
+    <div class="bcn ironfx">
+      <div class="bcn-header">
+        <div class="bcn-logo-wrap">
+          <div class="bcn-logo-icon"><span class="bcn-logo-text" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:900;"><span style="color:#8b0000;">Iron</span><span style="color:#111;">FX</span></span></div>
+          <div>
+            <div class="bcn-name">IRONFX</div>
+            <div class="bcn-tagline">Award-Winning Multi-Asset Broker</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div class="bcn-status"></div>
+          <span class="bcn-badge">RECOMMENDED BROKER</span>
+        </div>
+      </div>
+      <div class="bcn-reg">Regulated · FCA · CySEC · FSCA · BaFin</div>
+      <p class="bcn-desc">IronFX is a multi-award-winning global broker with 14+ years of industry experience, serving clients in 180+ countries. Offering 500+ tradeable instruments across Forex, Metals, Futures, Shares, Spot Indices and Commodities — with MT4 across all devices and local Arabic support.</p>
+      <div class="bcn-chips">
+        <span class="bcn-chip">500+ Instruments</span>
+        <span class="bcn-chip">MT4 All Devices</span>
+        <span class="bcn-chip">180+ Countries</span>
+        <span class="bcn-chip">Arabic Support</span>
+        <span class="bcn-chip">Islamic Accounts</span>
+      </div>
+      <a href="https://go.ironfx.com/visit/?bta=58873&nci=7301" target="_blank" class="bcn-signup">
+        Open IronFX Account →
       </a>
     </div>
 
