@@ -466,9 +466,69 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
 .wa{position:fixed;bottom:24px;right:20px;width:52px;height:52px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;font-size:26px;z-index:998;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .3s;}
 .wa:hover{transform:scale(1.1);}
 
+/* ══ IFOREX STICKY RIGHT BANNER (sits above FP Markets) ══ */
+.ifx-sticky{
+  position:fixed;top:120px;right:0;z-index:997;
+  display:flex;flex-direction:column;align-items:flex-end;
+  transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+.ifx-sticky:hover .ifx-sticky-panel{transform:translateX(0);}
+.ifx-sticky-panel{
+  transform:translateX(calc(100% - 44px));
+  transition:transform .4s cubic-bezier(.4,0,.2,1);
+  display:flex;align-items:stretch;
+  border-radius:12px 0 0 12px;
+  overflow:hidden;
+  box-shadow:-4px 4px 30px rgba(0,0,0,.5),0 0 0 1px rgba(77,124,255,.3);
+}
+.ifx-sticky-tab{
+  width:44px;flex-shrink:0;
+  background:linear-gradient(180deg,#1a3fd0,#4d7cff);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  cursor:pointer;padding:14px 0;
+}
+.ifx-sticky-tab svg{width:18px;height:18px;fill:#fff;opacity:.9;}
+.ifx-sticky-tab-label{
+  writing-mode:vertical-rl;text-orientation:mixed;
+  font-size:9px;font-weight:800;color:#fff;letter-spacing:2px;
+  text-transform:uppercase;font-family:'Plus Jakarta Sans',sans-serif;
+  transform:rotate(180deg);white-space:nowrap;
+}
+.ifx-sticky-body{
+  background:linear-gradient(135deg,#0a1628 0%,#071020 100%);
+  border-left:2px solid #4d7cff;
+  padding:18px 18px 14px;
+  width:210px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.ifx-sticky-logo{display:flex;align-items:center;gap:8px;margin-bottom:2px;}
+.ifx-sticky-logo-box{
+  background:#fff;border-radius:6px;padding:4px 10px;height:28px;
+  display:flex;align-items:center;
+}
+.ifx-sticky-logo-box span{font-size:11px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;white-space:nowrap;}
+.ifx-sticky-name{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:#fff;}
+.ifx-sticky-reg{font-family:'DM Mono',monospace;font-size:8px;color:#4d7cff;letter-spacing:1.5px;text-transform:uppercase;}
+.ifx-sticky-headline{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:#fff;line-height:1.1;}
+.ifx-sticky-chips{display:flex;flex-wrap:wrap;gap:4px;}
+.ifx-sticky-chip{font-size:8px;padding:2px 7px;border-radius:3px;background:rgba(77,124,255,.12);border:1px solid rgba(77,124,255,.25);color:#7d9dff;font-weight:700;letter-spacing:.3px;}
+.ifx-sticky-btn{
+  display:block;text-align:center;
+  background:linear-gradient(135deg,#1a3fd0,#4d7cff);
+  color:#fff;font-weight:800;font-size:11px;
+  padding:10px 14px;border-radius:6px;letter-spacing:.3px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  transition:all .3s;white-space:nowrap;
+  border:none;cursor:pointer;
+}
+.ifx-sticky-btn:hover{box-shadow:0 4px 18px rgba(77,124,255,.5);transform:translateY(-1px);}
+.ifx-sticky-disc{font-size:7px;color:rgba(241,245,249,.2);font-family:'DM Mono',monospace;text-align:center;letter-spacing:.5px;}
+
+@media(max-width:960px){.ifx-sticky{display:none;}}
+
 /* ══ FP MARKETS STICKY SIDE BANNER ══ */
 .fp-sticky{
-  position:fixed;top:120px;right:0;z-index:997;
+  position:fixed;top:392px;right:0;z-index:997;
   display:flex;flex-direction:column;align-items:flex-end;
   transition:transform .4s cubic-bezier(.4,0,.2,1);
 }
@@ -658,6 +718,36 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
   </div>
 </div>
 
+<!-- IFOREX STICKY RIGHT BANNER (above FP Markets) -->
+<div class="ifx-sticky">
+  <div class="ifx-sticky-panel">
+    <div class="ifx-sticky-tab">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 17h2v-6H3v6zm4 0h2V7H7v10zm4 0h2v-8h-2v8zm4 0h2V5h-2v12zm4 0h2v-4h-2v4zM2 19h20v2H2v-2z"/></svg>
+      <span class="ifx-sticky-tab-label">iFOREX</span>
+    </div>
+    <div class="ifx-sticky-body">
+      <div class="ifx-sticky-logo">
+        <div class="ifx-sticky-logo-box">
+          <span><span style="color:#1a3fd0;">i</span><span style="color:#333;font-weight:600;">FOREX</span></span>
+        </div>
+        <div class="ifx-sticky-name">iFOREX</div>
+      </div>
+      <div class="ifx-sticky-reg">BVI FSC Licensed · Since 1996</div>
+      <div class="ifx-sticky-headline">950+ Markets<br>30 Years</div>
+      <div class="ifx-sticky-chips">
+        <span class="ifx-sticky-chip">Forex & CFDs</span>
+        <span class="ifx-sticky-chip">Shares & Crypto</span>
+        <span class="ifx-sticky-chip">Own Platform</span>
+        <span class="ifx-sticky-chip">1-on-1 Training</span>
+      </div>
+      <a href="https://iforex.go2cloud.org/aff_c?offer_id=405&aff_id=14165" target="_blank" rel="noopener sponsored" class="ifx-sticky-btn">
+        Open iFOREX Account →
+      </a>
+      <div class="ifx-sticky-disc">Capital at risk. T&Cs apply.</div>
+    </div>
+  </div>
+</div>
+
 <!-- FP MARKETS STICKY RIGHT BANNER -->
 <div class="fp-sticky">
   <div class="fp-sticky-panel">
@@ -716,6 +806,162 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
 <div class="ticker">
   <div class="ticker-inner" id="tickerEl"></div>
 </div>
+
+<!-- ══ IFOREX TOP BANNER ══ -->
+<a href="https://iforex.go2cloud.org/aff_c?offer_id=405&aff_id=14165" target="_blank" rel="noopener sponsored" class="ifxb-banner-wrap">
+  <div class="ifxb-banner">
+    <div class="ifxb-glow"></div>
+    <div class="ifxb-left">
+      <div class="ifxb-logo">
+        <span style="color:#4d7cff;font-weight:900;">i</span><span style="color:#ffffff;font-weight:900;">FOREX</span>
+      </div>
+      <div class="ifxb-badge">🏛 Since 1996 · Licensed by BVI FSC</div>
+    </div>
+    <div class="ifxb-center">
+      <div class="ifxb-headline">Trade 950+ Markets with iFOREX</div>
+      <div class="ifxb-sub">30 Years of Experience · Negative Balance Protection · 1-on-1 Training</div>
+      <div class="ifxb-chips">
+        <span>Forex</span><span>Shares</span><span>Indices</span><span>Commodities</span><span>Crypto</span><span>ETFs</span>
+      </div>
+    </div>
+    <div class="ifxb-right">
+      <div class="ifxb-cta">
+        Open iFOREX Account
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+      <div class="ifxb-disc">Capital at risk. T&amp;Cs apply.</div>
+    </div>
+  </div>
+</a>
+<p class="ifxb-risk">iFOREX is a CFD trading platform operated by Formula Investment House Ltd. CFDs are complex leveraged instruments. The value of your investments may go up or down and you may lose part or all of your deposit. Your capital is at risk.</p>
+
+<style>
+.ifxb-banner-wrap{display:block;text-decoration:none;padding:18px 5% 0;background:#060f1e;border-bottom:1px solid rgba(77,124,255,.12);}
+.ifxb-banner{
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  background:linear-gradient(135deg,rgba(26,63,208,.12) 0%,rgba(77,124,255,.07) 50%,rgba(26,63,208,.04) 100%);
+  border:1px solid rgba(77,124,255,.28);
+  border-radius:16px;padding:28px 36px;margin:0 auto;
+  max-width:1200px;
+  transition:all .35s;
+}
+.ifxb-banner-wrap:hover .ifxb-banner{
+  border-color:rgba(77,124,255,.6);
+  box-shadow:0 0 60px rgba(77,124,255,.18),0 12px 48px rgba(0,0,0,.35);
+  transform:translateY(-2px);
+}
+.ifxb-glow{
+  position:absolute;top:-60px;left:50%;transform:translateX(-50%);
+  width:500px;height:200px;
+  background:radial-gradient(ellipse,rgba(77,124,255,.14),transparent 70%);
+  pointer-events:none;
+}
+.ifxb-left{display:flex;flex-direction:column;gap:8px;flex-shrink:0;}
+.ifxb-logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:28px;line-height:1;letter-spacing:-0.5px;}
+.ifxb-badge{font-size:11px;color:rgba(125,157,255,.85);font-family:'DM Mono',monospace;letter-spacing:1px;white-space:nowrap;}
+.ifxb-center{flex:1;text-align:center;}
+.ifxb-headline{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,3vw,36px);letter-spacing:2px;color:#fff;margin-bottom:6px;}
+.ifxb-sub{font-size:13px;color:rgba(241,245,249,.55);margin-bottom:14px;}
+.ifxb-chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;}
+.ifxb-chips span{font-size:10px;padding:3px 10px;border-radius:20px;background:rgba(77,124,255,.12);border:1px solid rgba(77,124,255,.25);color:rgba(125,157,255,.95);font-weight:700;letter-spacing:.5px;}
+.ifxb-right{display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0;}
+.ifxb-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,#1a3fd0,#4d7cff);
+  color:#fff;font-weight:800;font-size:14px;
+  padding:14px 28px;border-radius:8px;white-space:nowrap;
+  transition:all .3s;letter-spacing:.3px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+}
+.ifxb-banner-wrap:hover .ifxb-cta{box-shadow:0 8px 28px rgba(77,124,255,.55);transform:translateY(-1px);}
+.ifxb-disc{font-size:9px;color:rgba(241,245,249,.25);text-align:center;font-family:'DM Mono',monospace;letter-spacing:.5px;}
+.ifxb-risk{background:#060f1e;margin:0;padding:10px 5% 0;text-align:center;font-size:10px;line-height:1.6;color:rgba(241,245,249,.28);}
+
+@media(max-width:768px){
+  .ifxb-banner-wrap{padding:14px 4% 0;}
+  .ifxb-banner{flex-direction:column;text-align:center;padding:24px 20px;gap:16px;}
+  .ifxb-left{align-items:center;}
+  .ifxb-badge{font-size:10px;}
+}
+</style>
+
+<!-- ══ IRONFX TOP BANNER ══ -->
+<a href="https://go.ironfx.com/visit/?bta=58873&nci=7301" target="_blank" rel="noopener sponsored" class="irnb-banner-wrap">
+  <div class="irnb-banner">
+    <div class="irnb-glow"></div>
+    <div class="irnb-left">
+      <div class="irnb-logo">
+        <span style="color:#e04b2a;font-weight:900;">Iron</span><span style="color:#ffffff;font-weight:900;">FX</span>
+      </div>
+      <div class="irnb-badge">🛡 14+ Years · FCA · CySEC · FSCA Regulated</div>
+    </div>
+    <div class="irnb-center">
+      <div class="irnb-headline">500+ Instruments, One Account</div>
+      <div class="irnb-sub">MT4 on All Devices · Arabic Support · Islamic Accounts</div>
+      <div class="irnb-chips">
+        <span>Forex</span><span>Metals</span><span>Futures</span><span>Shares</span><span>Indices</span><span>Commodities</span>
+      </div>
+    </div>
+    <div class="irnb-right">
+      <div class="irnb-cta">
+        Open IronFX Account
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+      <div class="irnb-disc">Capital at risk. T&amp;Cs apply.</div>
+    </div>
+  </div>
+</a>
+
+<style>
+.irnb-banner-wrap{display:block;text-decoration:none;padding:18px 5% 18px;background:#060f1e;border-bottom:1px solid rgba(204,34,0,.15);}
+.irnb-banner{
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  background:linear-gradient(135deg,rgba(139,0,0,.14) 0%,rgba(204,34,0,.08) 50%,rgba(139,0,0,.04) 100%);
+  border:1px solid rgba(204,34,0,.28);
+  border-radius:16px;padding:28px 36px;margin:0 auto;
+  max-width:1200px;
+  transition:all .35s;
+}
+.irnb-banner-wrap:hover .irnb-banner{
+  border-color:rgba(204,34,0,.6);
+  box-shadow:0 0 60px rgba(204,34,0,.16),0 12px 48px rgba(0,0,0,.35);
+  transform:translateY(-2px);
+}
+.irnb-glow{
+  position:absolute;top:-60px;left:50%;transform:translateX(-50%);
+  width:500px;height:200px;
+  background:radial-gradient(ellipse,rgba(204,34,0,.14),transparent 70%);
+  pointer-events:none;
+}
+.irnb-left{display:flex;flex-direction:column;gap:8px;flex-shrink:0;}
+.irnb-logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:28px;line-height:1;letter-spacing:-0.5px;}
+.irnb-badge{font-size:11px;color:rgba(255,110,80,.85);font-family:'DM Mono',monospace;letter-spacing:1px;white-space:nowrap;}
+.irnb-center{flex:1;text-align:center;}
+.irnb-headline{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,3vw,36px);letter-spacing:2px;color:#fff;margin-bottom:6px;}
+.irnb-sub{font-size:13px;color:rgba(241,245,249,.55);margin-bottom:14px;}
+.irnb-chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;}
+.irnb-chips span{font-size:10px;padding:3px 10px;border-radius:20px;background:rgba(204,34,0,.12);border:1px solid rgba(204,34,0,.25);color:rgba(255,120,90,.95);font-weight:700;letter-spacing:.5px;}
+.irnb-right{display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0;}
+.irnb-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,#8b0000,#cc2200);
+  color:#fff;font-weight:800;font-size:14px;
+  padding:14px 28px;border-radius:8px;white-space:nowrap;
+  transition:all .3s;letter-spacing:.3px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+}
+.irnb-banner-wrap:hover .irnb-cta{box-shadow:0 8px 28px rgba(204,34,0,.55);transform:translateY(-1px);}
+.irnb-disc{font-size:9px;color:rgba(241,245,249,.25);text-align:center;font-family:'DM Mono',monospace;letter-spacing:.5px;}
+
+@media(max-width:768px){
+  .irnb-banner-wrap{padding:14px 4%;}
+  .irnb-banner{flex-direction:column;text-align:center;padding:24px 20px;gap:16px;}
+  .irnb-left{align-items:center;}
+  .irnb-badge{font-size:10px;}
+}
+</style>
 
 <!-- HERO -->
 <section id="hero">
