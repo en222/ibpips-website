@@ -671,7 +671,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
 
 /* ══ SUPPORT CHAT WIDGET ══ */
 #supportChatBtn{
-  position:fixed;bottom:26px;right:26px;z-index:2000;
+  position:fixed;bottom:96px;right:26px;z-index:2000;
   width:62px;height:62px;border-radius:50%;border:none;cursor:pointer;
   background:linear-gradient(135deg,var(--gold),var(--gold2));
   display:flex;align-items:center;justify-content:center;
@@ -692,7 +692,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
 }
 
 #supportChatPanel{
-  position:fixed;bottom:100px;right:26px;z-index:2000;
+  position:fixed;bottom:170px;right:26px;z-index:2000;
   width:360px;max-width:calc(100vw - 32px);max-height:min(560px,calc(100vh - 130px));
   background:var(--dark2);border:1px solid var(--border);border-radius:16px;
   box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden;
@@ -746,8 +746,8 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
 .sc-error{font-size:12px;color:var(--red);margin-top:8px;display:none;}
 
 @media(max-width:480px){
-  #supportChatBtn{bottom:18px;right:18px;width:56px;height:56px;}
-  #supportChatPanel{right:16px;bottom:86px;width:calc(100vw - 32px);}
+  #supportChatBtn{bottom:86px;right:18px;width:56px;height:56px;}
+  #supportChatPanel{right:16px;bottom:154px;width:calc(100vw - 32px);}
 }
 </style>
 </head>
@@ -2158,7 +2158,7 @@ function submitForm(btn){
 }
 
 /* SUPPORT CHAT WIDGET */
-(function(){
+document.addEventListener('DOMContentLoaded', function(){
   const btn=document.getElementById('supportChatBtn');
   const panel=document.getElementById('supportChatPanel');
   const badge=document.getElementById('supportChatBadge');
@@ -2208,7 +2208,7 @@ function submitForm(btn){
       errEl.style.display='block';
     });
   });
-})();
+});
 </script>
 
 <!-- SUPPORT CHAT WIDGET -->
