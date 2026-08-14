@@ -258,18 +258,9 @@ a{text-decoration:none;color:inherit;}
 /* eToro green accent */
 .bcn.etoro::before{background:linear-gradient(90deg,#00c853,#1de9b6);}
 .bcn.etoro:hover{border-color:rgba(0,200,83,.3);}
-/* XTB blue accent */
-.bcn.xtb::before{background:linear-gradient(90deg,#0056b3,#0099ff);}
-.bcn.xtb:hover{border-color:rgba(0,86,179,.3);}
 /* FP Markets red accent */
 .bcn.fpmarkets::before{background:linear-gradient(90deg,#c0392b,#e74c3c);}
 .bcn.fpmarkets:hover{border-color:rgba(192,57,43,.3);}
-/* AdroFx purple accent */
-.bcn.adrofx::before{background:linear-gradient(90deg,#7c3aed,#a855f7);}
-.bcn.adrofx:hover{border-color:rgba(124,58,237,.3);}
-/* Admiral Markets teal accent */
-.bcn.admiral::before{background:linear-gradient(90deg,#0073a8,#00b4d8);}
-.bcn.admiral:hover{border-color:rgba(0,115,168,.3);}
 /* Libertex orange accent */
 .bcn.libertex::before{background:linear-gradient(90deg,#ff6b00,#ffaa00);}
 .bcn.libertex:hover{border-color:rgba(255,107,0,.3);}
@@ -292,7 +283,6 @@ a{text-decoration:none;color:inherit;}
 }
 .bcn-logo-icon img{width:100%;height:100%;object-fit:contain;}
 .bcn-logo-text{font-weight:900;letter-spacing:-0.5px;font-size:16px;line-height:1;white-space:nowrap;}
-.adrofx .bcn-logo-icon{background:#1a0a35;}
 
 .bcn-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:#fff;line-height:1;}
 .bcn-tagline{font-size:11px;color:var(--text2);margin-top:2px;}
@@ -310,14 +300,8 @@ a{text-decoration:none;color:inherit;}
 }
 .etoro .bcn-signup{background:linear-gradient(135deg,#00c853,#1de9b6);color:#fff;}
 .etoro .bcn-signup:hover{box-shadow:0 6px 22px rgba(0,200,83,.4);transform:translateY(-1px);}
-.xtb .bcn-signup{background:linear-gradient(135deg,#0056b3,#0099ff);color:#fff;}
-.xtb .bcn-signup:hover{box-shadow:0 6px 22px rgba(0,86,179,.4);transform:translateY(-1px);}
 .fpmarkets .bcn-signup{background:linear-gradient(135deg,#c0392b,#e74c3c);color:#fff;}
 .fpmarkets .bcn-signup:hover{box-shadow:0 6px 22px rgba(192,57,43,.4);transform:translateY(-1px);}
-.adrofx .bcn-signup{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;}
-.adrofx .bcn-signup:hover{box-shadow:0 6px 22px rgba(124,58,237,.4);transform:translateY(-1px);}
-.admiral .bcn-signup{background:linear-gradient(135deg,#0073a8,#00b4d8);color:#fff;}
-.admiral .bcn-signup:hover{box-shadow:0 6px 22px rgba(0,115,168,.4);transform:translateY(-1px);}
 .libertex .bcn-signup{background:linear-gradient(135deg,#ff6b00,#ffaa00);color:#fff;}
 .libertex .bcn-signup:hover{box-shadow:0 6px 22px rgba(255,107,0,.4);transform:translateY(-1px);}
 /* AxiTrader & IronFX signup styles already in broker accent block above */
@@ -1392,35 +1376,6 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
       <p class="etoro-card-disc">eToro is a multi-asset investment platform. The value of your investments may go up or down. Your capital is at risk.</p>
     </div>
 
-    <!-- XTB -->
-    <div class="bcn xtb">
-      <div class="bcn-header">
-        <div class="bcn-logo-wrap">
-          <div class="bcn-logo-icon"><span class="bcn-logo-text" style="color:#d32f2f;font-size:20px;font-family:'Bebas Neue',sans-serif;letter-spacing:3px;">XTB</span></div>
-          <div>
-            <div class="bcn-name">XTB</div>
-            <div class="bcn-tagline">Award-Winning CFD Broker</div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <div class="bcn-status"></div>
-          <span class="bcn-badge">RECOMMENDED BROKER</span>
-        </div>
-      </div>
-      <div class="bcn-reg">Regulated · FCA · KNF · CySEC · IFSC</div>
-      <p class="bcn-desc">XTB is a globally recognised, award-winning CFD and forex broker listed on the Warsaw Stock Exchange. With their proprietary xStation 5 platform, ultra-competitive spreads, and a broad range of 5,800+ instruments, XTB is a top choice for serious traders worldwide.</p>
-      <div class="bcn-chips">
-        <span class="bcn-chip">5,800+ Instruments</span>
-        <span class="bcn-chip">xStation 5</span>
-        <span class="bcn-chip">Stock CFDs</span>
-        <span class="bcn-chip">0% Commission Stocks</span>
-        <span class="bcn-chip">Listed Company</span>
-      </div>
-      <a href="https://geolink.xtb.com/VdiZi" target="_blank" class="bcn-signup">
-        Open XTB Account →
-      </a>
-    </div>
-
     <!-- FP Markets -->
     <div class="bcn fpmarkets">
       <div class="bcn-header">
@@ -1450,69 +1405,11 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
       </a>
     </div>
 
-    <!-- AdroFx -->
-    <div class="bcn adrofx">
-      <div class="bcn-header">
-        <div class="bcn-logo-wrap">
-          <div class="bcn-logo-icon"><span class="bcn-logo-text" style="color:#a78bfa;font-size:15px;font-family:'Plus Jakarta Sans',sans-serif;">Adro<span style="color:#fff;">Fx</span></span></div>
-          <div>
-            <div class="bcn-name">ADROFX</div>
-            <div class="bcn-tagline">Forex & CFD Specialist</div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <div class="bcn-status"></div>
-          <span class="bcn-badge">RECOMMENDED BROKER</span>
-        </div>
-      </div>
-      <div class="bcn-reg">Regulated · SVGFSA · Global Reach</div>
-      <p class="bcn-desc">AdroFx is a fast-growing multi-asset broker specialising in forex and CFD trading with a strong presence in MENA, Africa, and CIS markets. Known for its competitive spreads, fast withdrawals, and support for MT4/MT5, AdroFx is a popular choice for traders across emerging markets.</p>
-      <div class="bcn-chips">
-        <span class="bcn-chip">MT4 / MT5</span>
-        <span class="bcn-chip">High IB Commission</span>
-        <span class="bcn-chip">MENA Friendly</span>
-        <span class="bcn-chip">Crypto Deposits</span>
-        <span class="bcn-chip">Islamic Accounts</span>
-      </div>
-      <a href="https://adrofx.club/?refid=AWVYN5" target="_blank" class="bcn-signup">
-        Open AdroFx Account →
-      </a>
-    </div>
-
-    <!-- Admiral Markets -->
-    <div class="bcn admiral">
-      <div class="bcn-header">
-        <div class="bcn-logo-wrap">
-          <div class="bcn-logo-icon"><span class="bcn-logo-text" style="color:#0073a8;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;">ADMIRALS</span></div>
-          <div>
-            <div class="bcn-name">ADMIRAL MARKETS</div>
-            <div class="bcn-tagline">Admirals · Global Broker</div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <div class="bcn-status"></div>
-          <span class="bcn-badge">RECOMMENDED BROKER</span>
-        </div>
-      </div>
-      <div class="bcn-reg">Regulated · FCA · ASIC · CySEC · EFSA · JSC</div>
-      <p class="bcn-desc">Admiral Markets (now Admirals) is an award-winning broker with over 20 years of experience. Regulated across multiple top-tier jurisdictions, Admirals offers exceptional trading conditions on MT4/MT5, a wide instrument range, and one of the most reputable names in the industry.</p>
-      <div class="bcn-chips">
-        <span class="bcn-chip">20+ Years</span>
-        <span class="bcn-chip">MT4 / MT5</span>
-        <span class="bcn-chip">8,000+ Instruments</span>
-        <span class="bcn-chip">Top-Tier Regulated</span>
-        <span class="bcn-chip">Trusted Name</span>
-      </div>
-      <a href="https://admiralmarkets.com/" target="_blank" class="bcn-signup">
-        Open Admirals Account →
-      </a>
-    </div>
-
     <!-- AxiTrader -->
     <div class="bcn axitrader">
       <div class="bcn-header">
         <div class="bcn-logo-wrap">
-          <div class="bcn-logo-icon"><span class="bcn-logo-text" style="color:#e30613;font-size:16px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;">Axi<span style="color:#111;">Trader</span></span></div>
+          <div class="bcn-logo-icon"><img src="data:image/jpeg;base64,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" alt="Axi logo"></div>
           <div>
             <div class="bcn-name">AXITRADER</div>
             <div class="bcn-tagline">Global Forex & CFD Broker</div>
@@ -1983,10 +1880,10 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:56px 5
       <h5>Top Brokers</h5>
       <ul>
         <li><a href="#brokers">eToro</a></li>
-        <li><a href="#brokers">XTB</a></li>
         <li><a href="#brokers">FP Markets</a></li>
-        <li><a href="#brokers">AdroFx</a></li>
-        <li><a href="#brokers">Admiral Markets</a></li>
+        <li><a href="#brokers">AxiTrader</a></li>
+        <li><a href="#brokers">IronFX</a></li>
+        <li><a href="#brokers">Libertex</a></li>
       </ul>
     </div>
     <div class="fcol">
